@@ -12,6 +12,14 @@
         <title>Sign Up</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <p:panel header="Register">
+            <form method="POST" action="./register">
+                Username: <input type="text" name="username" />
+                Password: <input type="password" name="password" />
+                <br />
+                <input type="submit" value="Register" />
+                <input type="reset" value="Reset" />
+            </form>
+        </p:panel>
     </body>
 </html>
