@@ -42,7 +42,6 @@ public class register extends HttpServlet {
         String redirect = "/login.jsp";
         String DEFAULT_GROUP = "USER";
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
         try{
             String insert = "INSERT INTO USERTABLE(USERNAME,PASSWORD) VALUES (?,?)";
             String add_group = "INSERT INTO GROUPTABLE(USERNAME,GROUPID) VALUES(?,?)";

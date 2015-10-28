@@ -13,7 +13,7 @@
     </head>
     <body>
         <H1>Login</H1>
-         <p:panel header="Login From">
+         <p:panel header="Login Form">
             <form method="POST" action="j_security_check">
                 Username: <input type="text" name="j_username" />
                 Password: <input type="password" name="j_password" />
