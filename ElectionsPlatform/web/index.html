@@ -4,10 +4,38 @@
         <title>CCSU Journalism Web Platform</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <div><h1>Welcome</h1></div>
-        <a href="./signup.jsp">Sign-up</a><br/>
-        <a href="./test/test.jsp">Some protected page</a>
+        <div id="wrapper">
+	<div id="header-wrapper">
+	<div id="header" class="container">
+		<div id="logo">
+			<h1><a href="#">CCSU Journalism</a></h1>
+		</div>
+		<div id="menu">
+			<ul>
+				<li class="current_page_item"><a href="#" title="">Home</a></li>
+				<li><a href="#" title="">Map</a></li>
+				<li><a href="./login.jsp" title="">Login</a></li>
+				<li><a href="./register/" title="">Register</a></li>        
+			</ul>
+		</div>
+	</div>
+	</div>
+            <div id="bigstory">
+                <div class="title">BREAKING: BIG STORY 1</div>
+                <div class="subtext">Some text related to the story goes here. Any overflow should just go below this title and neatly align. It probably won't, because my CSS is bad.</div>
+            </div>
+            
+            <div id="smallstories" class="container">
+                <h1>News</h1>
+                <div class="storybox"><h1><a href="#">Story 1</a></H1><p>Info regarding the story goes in this little box here. Some type of image should go in the left here, but thats for later.</p></div>
+                <div class="storybox"><h1><a href="#">Story 2</a></H1><p>Info regarding the story goes in this little box here.</p></div>
+                <div class="storybox"><h1><a href="#">Story 3</a></H1><p>Info regarding the story goes in this little box here.</p></div>    
+            </div>
+            
+        </div>
+        
     </body>
 </html>

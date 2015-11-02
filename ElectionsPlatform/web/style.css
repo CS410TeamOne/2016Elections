@@ -1,0 +1,250 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 28, 2015, Oct 28, 2015 5:10:06 PM
+    Author     : johno_000
+*/
+
+html, body
+{
+    height: 100%;
+}
+
+body
+{
+    margin: 0px;
+    padding: 0px;
+    background: #ccc;
+    font-family: 'Varela', sans-serif;
+    font-size: 11pt;
+    font-weight: 300;
+    color: #656565;
+}
+
+
+h1, h2, h3
+{
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    color: #123;
+}
+
+p, ol, ul
+{
+    margin-top: 0;
+}
+
+ol, ul
+{
+    padding: 0;
+    list-style: none;
+}
+
+ul.actions
+{
+    text-align: center;
+}
+
+p
+{
+    line-height: 180%;
+}
+
+a
+{
+    color: #0000FF;
+}
+
+a:hover
+{
+    text-decoration: none;
+}
+
+.container
+{
+    overflow: hidden;
+    margin: 0em auto;
+    width: 1000px;
+}
+
+.button
+{
+    display: inline-block;
+    padding: 0em 3em;
+    background: #009E2D;
+    letter-spacing: 0.20em;
+    line-height: 4em;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 1em;
+    color: #FFF;
+}
+
+.button:before
+{
+    display: inline-block;
+    background: #FFC31F;
+    margin-right: 1em;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 20px;
+    text-align: center;
+    color: #272925;
+}
+.title h2
+{
+    text-transform: uppercase;
+    font-size: 2.7em;
+}
+
+.title .byline
+{
+    font-size: 1.7em;
+    color: #6F6F6F;
+}
+#header-wrapper
+{
+    background: #333333;
+}
+
+#header
+{
+    position: relative;
+    padding: 2em 0em;
+}
+#logo
+{
+    position: absolute;
+    top: 1em;
+    left: 0;
+    text-align:center;
+}
+
+#logo h1
+{
+    color: #FFF;
+}
+
+#logo a
+{
+    text-decoration: none;
+    color: #fff;
+}
+#menu
+{
+    position: absolute;
+    top: 2em;
+    right: 0;
+}
+
+#menu ul
+{
+    display: inline-block;
+}
+
+#menu li
+{
+    display: block;
+    float: left;
+    text-align: center;
+}
+
+#menu li a, #menu li span
+{
+    padding: 1em 1.5em;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1em;
+    font-weight: bold;
+    color: #123;
+}
+
+#menu li:hover a, #menu li.active a, #menu li.active span
+{
+    color: #FFF;
+}
+
+#menu .current_page_item a
+{
+    background: #123;
+    color: #FFF;
+}
+#story{
+    text-align:left;
+    font-family:inherit;
+}
+#story h1{
+    font-weight:bold;
+    font-size:2em;
+}
+#bigstory
+{
+    overflow: hidden;
+    padding: 1em 5em 5em 29.25em;
+    background: #123;
+    background-size: cover;
+    text-align:left;
+    position:relative;
+    color: rgba(255,255,255,.8);
+}
+
+#bigstory .subtext{
+    font-size:1em;
+    padding-left:10em;
+    padding-top:0em;
+    width:40%;
+}
+
+#bigstory .title
+{
+    margin-bottom: 0.5em;
+    text-transform: uppercase !important;
+    font-size:2em;
+}
+
+#bigstory .title h2
+{
+    color: #FFF;
+}
+
+#bigstory .title .byline
+{
+    color: rgba(255,255,255,.6);
+}
+
+#bigstory .button
+{
+    margin-top: 3em;
+    background: #123 !important;
+}
+.storybox
+{
+    padding: .5em 2em 1em 1em;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 8px;
+    text-align: left;
+    width: 320px;
+}
+.storybox h1{
+    font-size:1.5em;
+}
+.storybox h1 a{
+    text-decoration:none;
+    color:#123;
+}
+.storybox p{
+    font-size:1em;
+}
+#smallstories
+{
+    overflow: hidden;
+    padding: 1em 0em;
+    width:50%;
+}
