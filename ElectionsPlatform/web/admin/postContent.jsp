@@ -36,7 +36,7 @@
                 <form method="POST" action="PostContent">
                     Title: <input type="text" name="title"/><br/>
                     Text: <input type="textarea" name="text" id="tinyMCE"/><br/>
-                    Sub-Title: <input type="textarea" name="subtitle"/><br/>
+                    Sub-Title/URL: <input type="textarea" name="subtitle"/><br/>
                     Link Only: <input type="checkbox" name="is_link"/><br/>
                     <input type="submit" value="Post" />
                     <input type="reset" value="Reset" />

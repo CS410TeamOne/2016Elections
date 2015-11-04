@@ -38,7 +38,7 @@ public class PostContent extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String redirect = "./index.html";
+        String redirect = "./postContent.jsp";
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         java.util.Date myDate = new java.util.Date();
@@ -48,24 +48,26 @@ public class PostContent extends HttpServlet {
         String title = (String)request.getParameter("title");
         String subtitle = (String)request.getParameter("subtitle");
         String username = (String) request.getParameter("j_username");
-        
+        boolean link = false;
+        if(request.getParameter("is_link")!=null){
+            link = true;
+        }
         try {
             String insert = "INSERT INTO CONTENT(TEXT,TITLE,SUBTITLE,DATETIME,IS_LINK,SUBMITTED_BY) VALUES (?,?,?,?,?,?)";
 
             try (Connection connect = datasource.getConnection()) {
                  PreparedStatement postContent = connect.prepareStatement(insert);
-                 
                  postContent.setString(1,text);
                  postContent.setString(2,title);
                  postContent.setString(3,subtitle);
                  postContent.setDate(4, sqlDate);
-                 postContent.setBoolean(5, false);
+                 postContent.setBoolean(5, link);
                  postContent.setString(6,username);
                  postContent.executeUpdate();
             } catch (SQLException ex) {
                 error = ex.getMessage();
                 request.setAttribute("error", ex.getMessage());
-                redirect = "./error";
+                redirect = "../error";
             }
         } finally {
             request.getRequestDispatcher(redirect).forward(request,response);
