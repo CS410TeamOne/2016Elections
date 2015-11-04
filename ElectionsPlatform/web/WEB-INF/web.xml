@@ -7,6 +7,7 @@
     <servlet>
         <servlet-name>PostContent</servlet-name>
         <servlet-class>PostContent</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
@@ -14,7 +15,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PostContent</servlet-name>
-        <url-pattern>/PostContent</url-pattern>
+        <url-pattern>/admin/PostContent</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -31,6 +32,18 @@
         <auth-constraint>
             <description/>
             <role-name>USER</role-name>
+            <role-name>ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Admin</display-name>
+        <web-resource-collection>
+            <web-resource-name>admin</web-resource-name>
+            <description>Admin realm.</description>
+            <url-pattern>/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
             <role-name>ADMIN</role-name>
         </auth-constraint>
     </security-constraint>

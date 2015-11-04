@@ -6,16 +6,25 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 
 /**
  *
  * @author johno_000
  */
 public class PostContent extends HttpServlet {
+
+    @Resource(name = "jdbc/elections")
+    DataSource datasource;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,19 +37,29 @@ public class PostContent extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String redirect = "./index.html";
         response.setContentType("text/html;charset=UTF-8");
-        
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet PostContent</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet PostContent at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        HttpSession session = request.getSession();
+        java.util.Date myDate = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
+        try {
+            String insert = "INSERT INTO CONTENT(ID,TEXT,TITLE,SUBTITLE,DATETIME,IS_LINK,SUBMITTED_BY) VALUES (?,?,?,?,?,?,?)";
+            try (Connection connect = datasource.getConnection()) {
+                 PreparedStatement postContent = connect.prepareStatement(insert);
+                 postContent.setInt(1,1);
+                 postContent.setString(2,(String) session.getAttribute("text"));
+                 postContent.setString(3,(String) session.getAttribute("title"));
+                 postContent.setString(4,(String) session.getAttribute("subtitle"));
+                 postContent.setDate(5, sqlDate);
+                 postContent.setBoolean(6, false);
+                 postContent.setString(7,(String) session.getAttribute("j_username"));
+                 postContent.executeUpdate();
+            } catch (SQLException ex) {
+                request.setAttribute("error", ex.getMessage());
+                redirect = "./error.jsp";
+            }
+        } finally {
+            //request.getRequestDispatcher(redirect).forward(request, response);
         }
     }
 
