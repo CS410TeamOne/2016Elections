@@ -27,6 +27,7 @@ public class register extends HttpServlet {
 
     @Resource(name = "jdbc/elections")
     DataSource datasource;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,47 +44,47 @@ public class register extends HttpServlet {
         String DEFAULT_GROUP = "USER";
         String error = "";
         response.setContentType("text/html;charset=UTF-8");
-        try{
+        try {
             String add_user = "INSERT INTO USERTABLE(USERNAME,PASSWORD) VALUES (?,?)";
             String add_group = "INSERT INTO GROUPTABLE(USER_ID, USERNAME,GROUPID) VALUES(?,?,?)";
             String get_id = "SELECT ID FROM USERTABLE WHERE USERNAME = ?";
-            try(Connection connect = datasource.getConnection()){
+            try (Connection connect = datasource.getConnection()) {
                 //Prepare statements / get strings
                 PreparedStatement adduser = connect.prepareStatement(add_user);
                 PreparedStatement addgroup = connect.prepareStatement(add_group);
-                PreparedStatement getid  = connect.prepareStatement(get_id);
+                PreparedStatement getid = connect.prepareStatement(get_id);
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
-                
+
                 //Hash the password
                 MessageDigest hasher = MessageDigest.getInstance("SHA-256");
                 hasher.update(password.getBytes("UTF-8"));
                 byte[] digest = hasher.digest();
                 String hash = String.format("%064x", new java.math.BigInteger(1, digest));
-                
+
                 //Add User to user table
                 adduser.setString(1, username);
-                adduser.setString(2,hash);
+                adduser.setString(2, hash);
                 adduser.executeUpdate();
                 //Set group strings
                 addgroup.setString(2, username);
-                addgroup.setString(3,DEFAULT_GROUP);
+                addgroup.setString(3, DEFAULT_GROUP);
                 //Get the ID of the user
                 getid.setString(1, username);
                 ResultSet rs = getid.executeQuery();
                 rs.next();
                 int id = rs.getInt(1);
                 //Add the ID and user to the group
-                addgroup.setInt(1,id);
+                addgroup.setInt(1, id);
                 addgroup.executeUpdate();
-                
-            }catch(SQLException ex){
+
+            } catch (SQLException ex) {
                 error = ex.getMessage();
                 request.setAttribute("error", ex.getMessage());
                 redirect = "./error";
             }
         } finally {
-           request.getRequestDispatcher(redirect).forward(request,response); 
+            request.getRequestDispatcher(redirect).forward(request, response);
         }
     }
 

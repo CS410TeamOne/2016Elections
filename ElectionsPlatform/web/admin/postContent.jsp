@@ -23,7 +23,7 @@
                     </div>
                     <div id="menu">
                         <ul>
-                            <li><a href="../index.html" title="">Home</a></li>
+                            <li><a href="../index.jsp" title="">Home</a></li>
                             <li><a href="#" title="">Map</a></li>
                             <li><a href="../login.jsp" title="">Login</a></li>
                             <li><a href="../signup.jsp" title="">Register</a></li>
@@ -34,6 +34,13 @@
             </div>
             <div id="bigstory">
                 <form method="POST" action="PostContent">
+                    <%
+                        String success = (String) request.getAttribute("info");
+                        if (success == null) {
+                            success = "";
+                        }
+                    %>
+                    <%=success%><br/>
                     Title: <input type="text" name="title"/><br/>
                     Text: <input type="textarea" name="text" id="tinyMCE"/><br/>
                     Sub-Title/URL: <input type="textarea" name="subtitle"/><br/>

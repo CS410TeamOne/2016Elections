@@ -58,6 +58,10 @@ a
 {
     color: #0000FF;
 }
+td
+{
+
+}
 
 a:hover
 {
@@ -226,8 +230,9 @@ a:hover
 }
 .storybox
 {
+    margin:0em;
     padding: .5em 2em 1em 1em;
-    border: 1px solid rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0);
     border-radius: 8px;
     text-align: left;
     width: 320px;
@@ -244,7 +249,8 @@ a:hover
 }
 #smallstories
 {
+    margin-left:30em;
     overflow: hidden;
     padding: 1em 0em;
-    width:50%;
+    width:100%;
 }
