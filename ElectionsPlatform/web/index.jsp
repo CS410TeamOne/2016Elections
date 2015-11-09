@@ -10,7 +10,7 @@
         <div id="wrapper">
             <div id="header-wrapper">
                 <div id="header" class="container">
-                        <h1>CCSU Journalism</h1> 
+                    <div id="logo"><h1><a href="#">CCSU Journalism</a></h1></div>
                     <div id="menu">
                         <ul>
                             <li class="current_page_item"><a href="#" title="">Home</a></li>
@@ -22,13 +22,11 @@
                     </div>
                 </div>
             </div>
-            <div id="bigstory">
+            <div id="bigstory" class="container">
                 <div class="title">BREAKING: BIG STORY 1</div>
                 <div class="subtext">Some text related to the story goes here. Any overflow should just go below this title and neatly align. In the future, an image should be loaded to the left.</div>
             </div>
-
             <div id="smallstories" class="container">
-
                 <table>
                     <tr><td><h1>News</h1></td><td><h1>Links</h1></td></tr>
                     <td>

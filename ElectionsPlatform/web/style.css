@@ -22,6 +22,7 @@ body
     font-size: 11pt;
     font-weight: 300;
     color: #656565;
+    background: #fff url(images/overlay.png) repeat;
 }
 
 
@@ -58,9 +59,9 @@ a
 {
     color: #0000FF;
 }
-td
+table
 {
-
+    margin:0em auto;
 }
 
 a:hover
@@ -190,27 +191,35 @@ a:hover
 }
 #bigstory
 {
-    overflow: hidden;
-    padding: 1em 5em 5em 29.25em;
-    background: #123;
+    border: 2px solid rgba(17,35,51,1);
+    overflow: visible;
+    background-color:rgba(17,35,51,1);
     background-size: cover;
+    height:auto;
+    padding-bottom: 2em;
     text-align:left;
     position:relative;
-    color: rgba(255,255,255,.8);
+    color: rgba(255,255,255,1);
 }
 
 #bigstory .subtext{
-    font-size:1em;
+    font-size:1.5em;
     padding-left:10em;
+    color:rgba(255,255,255,.8);
     padding-top:0em;
-    width:40%;
+    width:90%;
+}
+#bigstory .image{
+    float:left;
+    position:absolute;
 }
 
 #bigstory .title
 {
-    margin-bottom: 0.5em;
+    margin:1em 0em 0em 1em;
     text-transform: uppercase !important;
     font-size:2em;
+
 }
 
 #bigstory .title h2
@@ -249,8 +258,10 @@ a:hover
 }
 #smallstories
 {
-    margin-left:30em;
     overflow: hidden;
     padding: 1em 0em;
-    width:100%;
+    background-color: rgba(220,220,220,1);
+    border: 2px solid rgba(17,35,51,1);    
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
