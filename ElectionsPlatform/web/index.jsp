@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
         <meta charset="utf-8">
@@ -9,6 +9,15 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
+        <% 
+            String user = (String)session.getAttribute("username");
+            String user_class = (String)session.getAttribute("class");
+            boolean is_admin = false;
+            if(user_class.equals("admin")){
+                session.setAttribute("admin", true);
+            }
+         %>
+        <!-- NAV bar-->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -18,15 +27,16 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
                         <li><a href="">Map</a></li>
+                        <c:if test="${admin}"><li><a href="">Post</a></li></c:if>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
                         <li><a href="" data-toggle="modal" data-target="#register">Register</a></li>
                         <li><a href="" data-toggle="modal" data-target="#signIn">Login</a></li>
                     </ul>
                 </div>
-                <!--/.nav-collapse -->
             </div>
         </nav>
+        <!-- End NAV -->
         <!-- Carousel -->
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
@@ -150,7 +160,7 @@
                         <h4 class="modal-title" id="myModalLabel">Login</h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-signin" action="j_security_check" method="POST">
+                        <form  class="form-signin" method="POST" action="j_security_check">
                             <h2 class="form-signin-heading">Please sign in</h2>
                             <label for="inputUserName" class="sr-only">Username</label>
                             <input type="username" id="inputUserName" class="form-control" placeholder="Username" required autofocus name="j_username">
@@ -161,7 +171,7 @@
                                     <input type="checkbox" value="remember-me"> Remember me
                                 </label>
                             </div>
-                            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Login</button>
                         </form>
                     </div>
                 </div>
