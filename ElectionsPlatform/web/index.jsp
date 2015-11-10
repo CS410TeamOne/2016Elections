@@ -9,29 +9,38 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        <% 
-            String user = (String)session.getAttribute("username");
-            String user_class = (String)session.getAttribute("class");
-            boolean is_admin = false;
-            if(user_class.equals("admin")){
-                session.setAttribute("admin", true);
+        <%
+            if (session.getAttribute("username") != null) {
+                session.setAttribute("loggedin", true);
+                String user_class = (String) session.getAttribute("class");
+                if (user_class.equals("admin")) {
+                    session.setAttribute("admin", true);
+                }
             }
-         %>
+        %>
         <!-- NAV bar-->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">CCSU Journalism</a>
+                    <a class="navbar-brand" href="/index.jsp">CCSU Journalism</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
-                        <li><a href="">Map</a></li>
-                        <c:if test="${admin}"><li><a href="">Post</a></li></c:if>
-                    </ul>
-                    <ul class="nav navbar-nav pull-right">
-                        <li><a href="" data-toggle="modal" data-target="#register">Register</a></li>
-                        <li><a href="" data-toggle="modal" data-target="#signIn">Login</a></li>
+                        <li><a href="/map.jsp">Map</a></li>
+                        <c:if test="${admin}"><li><a href="./admin/postContent.jsp">Post</a></li></c:if>
+                        </ul>
+                        <ul class="nav navbar-nav pull-right">
+                        <c:choose>
+                            <c:when test="${loggedin}">
+                                <li><a href="" data-toggle="modal" data-target="#register">User Management</a></li>
+                                <li><a href="./logout.jsp">Logout</a></li>
+                                </c:when>
+                                <c:otherwise>
+                                <li><a href="" data-toggle="modal" data-target="#register">Register</a></li>
+                                <li><a href="" data-toggle="modal" data-target="#signIn">Login</a></li>
+                                </c:otherwise>
+                            </c:choose>
                     </ul>
                 </div>
             </div>
