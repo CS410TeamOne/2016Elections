@@ -40,12 +40,12 @@ public class register extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NoSuchAlgorithmException {
-        String redirect = "./login.jsp";
+        String redirect = "./index.jsp";
         String DEFAULT_GROUP = "USER";
         String error = "";
         response.setContentType("text/html;charset=UTF-8");
         try {
-            String add_user = "INSERT INTO USERTABLE(USERNAME,PASSWORD) VALUES (?,?)";
+            String add_user = "INSERT INTO USERTABLE(USERNAME,PASSWORD,EMAIL) VALUES (?,?,?)";
             String add_group = "INSERT INTO GROUPTABLE(USER_ID, USERNAME,GROUPID) VALUES(?,?,?)";
             String get_id = "SELECT ID FROM USERTABLE WHERE USERNAME = ?";
             try (Connection connect = datasource.getConnection()) {
@@ -55,7 +55,7 @@ public class register extends HttpServlet {
                 PreparedStatement getid = connect.prepareStatement(get_id);
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
-
+                String email = request.getParameter("email");
                 //Hash the password
                 MessageDigest hasher = MessageDigest.getInstance("SHA-256");
                 hasher.update(password.getBytes("UTF-8"));
@@ -65,6 +65,7 @@ public class register extends HttpServlet {
                 //Add User to user table
                 adduser.setString(1, username);
                 adduser.setString(2, hash);
+                adduser.setString(3, email);
                 adduser.executeUpdate();
                 //Set group strings
                 addgroup.setString(2, username);
