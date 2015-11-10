@@ -38,16 +38,16 @@ public class PostContent extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String redirect = "./postContent.jsp";
+        String redirect = "../index.jsp";
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         java.util.Date myDate = new java.util.Date();
         java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
         String error = "";
-        String text = (String) request.getParameter("text");
+        String text = (String) request.getParameter("content");
         String title = (String) request.getParameter("title");
         String subtitle = (String) request.getParameter("subtitle");
-        String username = (String) request.getParameter("j_username");
+        String username = (String) request.getUserPrincipal().getName();
         boolean link = false;
         if (request.getParameter("is_link") != null) {
             link = true;
@@ -70,8 +70,19 @@ public class PostContent extends HttpServlet {
                 redirect = "../error";
             }
         } finally {
-            request.setAttribute("info", "Content Posted!");
-            request.getRequestDispatcher(redirect).forward(request, response);
+            request.setAttribute("info", "success");
+             try (PrintWriter out = response.getWriter()) {
+                 out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<meta http-equiv='refresh' content='0; url=../index.jsp'/>");
+                out.println("<title>Success! Redirecting... </title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("Done! Redirecting...");
+                out.println("</body>");
+                out.println("</html>");
+             }
         }
     }
 
