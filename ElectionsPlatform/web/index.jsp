@@ -5,10 +5,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>CCSU Journalism Web Platform</title>
-        <link href="css/carousel.css" rel="stylesheet">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="<c:url value='./css/carousel.css'/>" rel="stylesheet">
+        <link href="<c:url value='./css/bootstrap.min.css'/>" rel="stylesheet">
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="./tinymce/js/tinymce/tinymce.min.js"></script>
+        <script src="./js/scripts.js"></script>
     </head>
     <body>
+        <!-- Scriptlet to check current user class. If it's admin, then display the admin controls -->
         <%
             if (session.getAttribute("username") != null) {
                 session.setAttribute("loggedin", true);
@@ -28,7 +32,7 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
                         <li><a href="/map.jsp">Map</a></li>
-                        <c:if test="${admin}"><li><a href="./admin/postContent.jsp">Post</a></li></c:if>
+                        <c:if test="${admin}"><li><a href="" data-toggle="modal" data-target="#postContent">Post</a></li></c:if>
                         </ul>
                         <ul class="nav navbar-nav pull-right">
                         <c:choose>
@@ -157,7 +161,9 @@
                     </div>
                 </div>
             </div>
-
+            <div class="alert alert-success" role="alert" style="display:none;" id="successmsg">
+                <strong>Success!</strong> Content was posted to the database.
+            </div>
         </div>
         <!--Register/Signin Popups -->
         <!--SIGNIN-->
@@ -186,6 +192,7 @@
                 </div>
             </div>
         </div>
+        <!--END SIGNIN-->
         <!--REGISTER-->
         <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -210,9 +217,39 @@
                 </div>
             </div>
         </div>
+        <!--END REGISTER-->
+        <!--POST CONTENT-->
+        <div class="modal fade" id="postContent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Post Content</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-signin" action="./admin/PostContent" method="POST" id="postcontent">
+                            <h2 class="form-signin-heading">Post Content</h2>
+                            <%
+                                String success = (String) request.getAttribute("info");
+                                if (success == null) {
+                                    success = "";
+                                }
+                            %>
+                            <%=success%><br/>
+                            Title: <input type="text" name="title"/><br/>
+                            Text: <textarea name="content">Article content goes here</textarea><br/>
+                            Sub-Title/URL: <input type="textarea" name="subtitle"/><br/>
+                            Link Only: <input type="checkbox" name="is_link"/><br/>
+                            <input type="submit" value="Post" />
+                            <input type="reset" value="Reset" />
+                        </form>
 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END CONTENT-->
         <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
 
     </body>
