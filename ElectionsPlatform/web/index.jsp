@@ -9,7 +9,6 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -24,7 +23,8 @@
                         <li><a href="" data-toggle="modal" data-target="#register">Register</a></li>
                         <li><a href="" data-toggle="modal" data-target="#signIn">Login</a></li>
                     </ul>
-                </div><!--/.nav-collapse -->
+                </div>
+                <!--/.nav-collapse -->
             </div>
         </nav>
         <!-- Carousel -->
@@ -77,6 +77,69 @@
             </a>
         </div>
         <!-- END CAROUSEL -->
+        <!--Display Body-->
+        <div class="container">
+            <div class="row">
+                <!--Story Colum-->
+                <div class="col-sm-4">
+                    <h1>Stories</h1>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Story Title</h3>
+                        </div>
+                        <div class="panel-body">
+                            Article text goes here
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Story 2 Title</h3>
+                        </div>
+                        <div class="panel-body">
+                            Article text goes here
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Story 3 title</h3>
+                        </div>
+                        <div class="panel-body">
+                            Article text goes here
+                        </div>
+                    </div>
+                </div>
+                <!--End story column-->
+                <!--Links Column-->
+                <div class="col-sm-4">
+                    <h1>Links</h1>
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <a href=""><h3 class="panel-title">URL Name Here</h3></a>
+                        </div>
+                        <div class="panel-body">
+                            Description here
+                        </div>
+                    </div>
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <a href=""><h3 class="panel-title">URL Name Here</h3></a>
+                        </div>
+                        <div class="panel-body">
+                            Description here
+                        </div>
+                    </div>
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <a href=""><h3 class="panel-title">URL Name Here</h3></a>
+                        </div>
+                        <div class="panel-body">
+                            Description here
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
         <!--Register/Signin Popups -->
         <!--SIGNIN-->
         <div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -128,8 +191,10 @@
                 </div>
             </div>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
         <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+
     </body>
 </html>
