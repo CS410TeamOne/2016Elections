@@ -32,6 +32,17 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
                         <li><a href="/map.jsp">Map</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Sections
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="ddlabel">
+                                <li><a href="#">Entertainment</a></li>
+                                <li><a href="#">Sports</a></li>
+                                <li><a href="#">Elections</a></li>
+                            </ul>
+                            <!--Admin Test-->
                         <c:if test="${admin}"><li><a href="" data-toggle="modal" data-target="#postContent">Post</a></li></c:if>
                         </ul>
                         <ul class="nav navbar-nav pull-right">
@@ -64,7 +75,7 @@
                     <div class="container">
                         <div class="carousel-caption">
                             <h1>Example headline.</h1>
-                            <p>Some information regarding the headline goes here.</p>
+                            <p>Some information regarding the headline goes here. An image can go behind or next to this text.</p>
                             <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
                         </div>
                     </div>
@@ -102,61 +113,90 @@
         <!-- END CAROUSEL -->
         <!--Display Body-->
         <div class="container">
-            <div class="row">
-                <!--Story Colum-->
-                <div class="col-sm-4">
-                    <h1>Stories</h1>
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Story Title</h3>
+            <div class="well">
+                <div class="row">
+                    <!--Story Colum-->
+                    <div class="col-sm-4">
+                        <h1>Stories</h1>
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Story Title</h3>
+                            </div>
+                            <div class="panel-body">
+                                Article text goes here
+                            </div>
                         </div>
-                        <div class="panel-body">
-                            Article text goes here
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Story 2 Title</h3>
+                            </div>
+                            <div class="panel-body">
+                                Article text goes here
+                            </div>
                         </div>
-                    </div>
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Story 2 Title</h3>
-                        </div>
-                        <div class="panel-body">
-                            Article text goes here
-                        </div>
-                    </div>
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Story 3 title</h3>
-                        </div>
-                        <div class="panel-body">
-                            Article text goes here
-                        </div>
-                    </div>
-                </div>
-                <!--End story column-->
-                <!--Links Column-->
-                <div class="col-sm-4">
-                    <h1>Links</h1>
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <a href=""><h3 class="panel-title">URL Name Here</h3></a>
-                        </div>
-                        <div class="panel-body">
-                            Description here
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Story 3 title</h3>
+                            </div>
+                            <div class="panel-body">
+                                Article text goes here
+                            </div>
                         </div>
                     </div>
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <a href=""><h3 class="panel-title">URL Name Here</h3></a>
+                    <!--End story column-->
+                    <!--Links Column-->
+                    <div class="col-sm-4">
+                        <h1>Links</h1>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <a href=""><h3 class="panel-title">URL Name Here</h3></a>
+                            </div>
+                            <div class="panel-body">
+                                Description here
+                            </div>
                         </div>
-                        <div class="panel-body">
-                            Description here
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <a href=""><h3 class="panel-title">URL Name Here</h3></a>
+                            </div>
+                            <div class="panel-body">
+                                Description here
+                            </div>
+                        </div>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <a href=""><h3 class="panel-title">URL Name Here</h3></a>
+                            </div>
+                            <div class="panel-body">
+                                Description here
+                            </div>
                         </div>
                     </div>
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <a href=""><h3 class="panel-title">URL Name Here</h3></a>
+                    <div class="col-sm-4">
+                        <h1>Top Forum Topics</h1>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <a href=""><h3 class="panel-title">Topic here</h3></a>
+                            </div>
+                            <div class="panel-body">
+                                Description here
+                            </div>
                         </div>
-                        <div class="panel-body">
-                            Description here
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <a href=""><h3 class="panel-title">Topic here</h3></a>
+                            </div>
+                            <div class="panel-body">
+                                Description here
+                            </div>
+                        </div>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <a href=""><h3 class="panel-title">Topic here</h3></a>
+                            </div>
+                            <div class="panel-body">
+                                Description here
+                            </div>
                         </div>
                     </div>
                 </div>
