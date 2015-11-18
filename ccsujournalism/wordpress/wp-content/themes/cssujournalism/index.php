@@ -6,7 +6,6 @@
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
-
     <div class="carousel-inner" role="listbox">
         <?php static $x = 0 ?>
         <?php query_posts('category_name=Top Stories&post_status=publish,future'); ?>
@@ -39,6 +38,25 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <?php
-    get_footer();
-    
+</div>
+<div class="container">
+    <h1>Top Stories</h1>
+    <div class="well">
+        <?php query_posts('category_name=&post_status=publish,future'); ?>
+        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><?php the_title() ?></h3>
+                    </div>
+                    <div class="panel-body">
+                        <?php the_excerpt() ?>
+                    </div>
+                </div>
+                <?php
+            endwhile;
+        else: endif;
+        ?>
+    </div>
+</div>
+<?php
+get_footer();

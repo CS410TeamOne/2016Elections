@@ -23,7 +23,6 @@
     </head>
 
     <body <?php body_class(); ?>>
-        <div id="page" class="hfeed site">
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
                     <div class="navbar-header">
@@ -42,4 +41,3 @@
                 </div>
             </nav>
             <!-- .site-header -->
-        </div>
