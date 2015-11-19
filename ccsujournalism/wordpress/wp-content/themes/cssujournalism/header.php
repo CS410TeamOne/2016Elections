@@ -36,11 +36,54 @@
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="<?php echo site_url(); ?>">Home</a></li>
-                        <li><a href="/map/">Map</a></li>
+                        <li><a href="<?php echo site_url(); ?>/map/">Map</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sections<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <?php
+                                $args = array(
+                                    'show_option_all' => '',
+                                    'orderby' => 'name',
+                                    'order' => 'ASC',
+                                    'style' => 'list',
+                                    'show_count' => 0,
+                                    'hide_empty' => 0,
+                                    'use_desc_for_title' => 1,
+                                    'child_of' => 0,
+                                    'feed' => '',
+                                    'feed_type' => '',
+                                    'feed_image' => '',
+                                    'exclude' => '',
+                                    'exclude_tree' => '',
+                                    'include' => '',
+                                    'hierarchical' => 1,
+                                    'title_li' => __(''),
+                                    'show_option_none' => __(''),
+                                    'number' => null,
+                                    'echo' => 1,
+                                    'depth' => 0,
+                                    'current_category' => 0,
+                                    'pad_counts' => 0,
+                                    'taxonomy' => 'category',
+                                    'walker' => null
+                                );
+                                wp_list_categories($args);
+                                ?>
+                            </ul>
+                        </li>
+
                     </ul>
                     <ul class="nav navbar-nav pull-right">
-                        <li><a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=register">Register</a></li>
-                        <li><a href="<?php bloginfo('wpurl'); ?>/wp-login.php">Login</a></li>
+                        <?php
+                        if (is_user_logged_in()) {
+                            if (current_user_can('manage_options')) {
+                                echo "<li><a href=\"" . site_url() . "/wp-admin\">Admin</a></li>";
+                            }
+                        } else {
+                            echo "<li><a href=\"" . site_url() . "/wp-login.php?action=register\">Register</a></li>";
+                            echo "<li><a href=\"" . site_url() . "/wp-login.php\">Login</a></li>";
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>
