@@ -23,21 +23,26 @@
     </head>
 
     <body <?php body_class(); ?>>
-            <nav class="navbar navbar-default navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="<?php echo site_url(); ?>"><?php bloginfo('name'); ?></a>
-                    </div>
-                    <div id="navbar" class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="/map.jsp">Map</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav pull-right">
-                            <li><a href="" data-toggle="modal" data-target="#register">Register</a></li>
-                            <li><a href="" data-toggle="modal" data-target="#signIn">Login</a></li>
-                        </ul>
-                    </div>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <?php
+            // Fix menu overlap bug..
+            if (is_admin_bar_showing())
+                echo '<div style="min-height: 28px;"></div>';
+            ?>
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="<?php echo site_url(); ?>"><?php bloginfo('name'); ?></a>
                 </div>
-            </nav>
-            <!-- .site-header -->
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="/map.jsp">Map</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav pull-right">
+                        <li><a href="" data-toggle="modal" data-target="#register">Register</a></li>
+                        <li><a href="" data-toggle="modal" data-target="#signIn">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- .site-header -->
