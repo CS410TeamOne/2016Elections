@@ -35,12 +35,12 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="/map.jsp">Map</a></li>
+                        <li class="active"><a href="<?php echo site_url(); ?>">Home</a></li>
+                        <li><a href="/map/">Map</a></li>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
-                        <li><a href="" data-toggle="modal" data-target="#register">Register</a></li>
-                        <li><a href="" data-toggle="modal" data-target="#signIn">Login</a></li>
+                        <li><a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=register">Register</a></li>
+                        <li><a href="<?php bloginfo('wpurl'); ?>/wp-login.php">Login</a></li>
                     </ul>
                 </div>
             </div>
