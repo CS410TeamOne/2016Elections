@@ -75,11 +75,14 @@
                     </ul>
                     <ul class="nav navbar-nav pull-right">
                         <?php
-                        if (is_user_logged_in()) {
-                            if (current_user_can('manage_options')) {
-                                echo "<li><a href=\"" . site_url() . "/wp-admin\">Admin</a></li>";
-                            }
-                        } else {
+                        if (is_user_logged_in()){
+                            global $current_user;
+                            get_currentuserinfo();
+                        }
+                        if (current_user_can('read')) {
+                            echo "<li><a href=\"" . site_url() . "/wp-admin\">" . $current_user->display_name . "</a></li>";
+                        }
+                        else {
                             echo "<li><a href=\"" . site_url() . "/wp-login.php?action=register\">Register</a></li>";
                             echo "<li><a href=\"" . site_url() . "/wp-login.php\">Login</a></li>";
                         }

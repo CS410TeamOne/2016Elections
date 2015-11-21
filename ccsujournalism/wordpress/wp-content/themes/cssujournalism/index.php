@@ -38,12 +38,17 @@
                     ?> ">
                         <img src="<?php echo_first_image(get_the_id()); ?>">
                         <div class="container">
-                            <div class="carousel-caption">
+                            <div class="carousel-caption-wrapper">
+                                 <div class="carousel-caption">
+                                     
                                 <div style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">
+                                  
                                     <h1><?php the_title() ?></h1>
-                                    <p><?php the_excerpt() ?></p>
+                                  <p><?php the_excerpt() ?> |
+                                  <a href='<?php the_permalink ?>'> Read More</a></p>           
                                 </div>
-                                <p><a class="btn btn-lg btn-primary" href="<?php the_permalink() ?>" role="button">Read</a></p>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
