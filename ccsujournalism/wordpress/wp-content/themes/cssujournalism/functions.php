@@ -31,18 +31,5 @@ function echo_first_image($postID) {
         }
     }
 }
-function format_comment($comment,$args,$depth){
-}
-function custom_sidebars() {
 
-	$args = array(
-		'id'            => 'twitter',
-		'class'         => 'sidebar',
-		'name'          => __( 'twitter', 'text_domain' ),
-		'description'   => __( 'To display popular discussions sidebar', 'text_domain' ),
-	);
-	register_sidebar( $args );
-
-}
-add_action( 'widgets_init', 'custom_sidebars' );
 remove_filter('the_excerpt', 'wpautop');
