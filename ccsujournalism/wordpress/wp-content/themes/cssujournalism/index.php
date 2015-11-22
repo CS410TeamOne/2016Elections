@@ -24,8 +24,8 @@
         <div class="carousel-inner" role="listbox">
 
             <?php
-#this is a counter for the 'active' css to be placed on the first carousel slide object.
-#there is probably a better way to do this, but this will work.
+            #this is a counter for the 'active' css to be placed on the first carousel slide object.
+            #there is probably a better way to do this, but this will work.
             static $x = 0
             ?>
             <?php query_posts('category_name=Top Stories&post_status=publish,future'); ?>
@@ -39,16 +39,14 @@
                         <img src="<?php echo_first_image(get_the_id()); ?>">
                         <div class="container">
                             <div class="carousel-caption-wrapper">
-                                 <div class="carousel-caption">
-                                     
-                                <div style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">
-                                  
-                                    <h1><?php the_title() ?></h1>
-                                  <p><?php the_excerpt() ?> |
-                                  <a href='<?php the_permalink ?>'> Read More</a></p>           
+                                <div class="carousel-caption">                                   
+                                    <div style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">                                  
+                                        <h1><?php the_title() ?></h1>
+                                        <p><?php the_excerpt() ?> |
+                                            <a href='<?php the_permalink ?>'>Read More</a></p>           
+                                    </div>
                                 </div>
-                                </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -66,47 +64,47 @@
             </a>
         </div>
     </div>
-    <div class="container">
-
-        <div class="row">
-            <div class="col-sm-4">
-                <h1>New Posts</h1>
-                <table class="table table-striped">
-                    <?php query_posts('category_name=&post_status=publish,future'); ?>
-                    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                            <tr><td><strong><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <h1>New Posts</h1>
+            <table class="table table-striped">
+                <?php query_posts('category_name=&post_status=publish,future'); ?>
+                <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                        <tr><td><strong><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
                         <?php
-                        endwhile;
-                    else: endif;
-                    ?>
-                </table>
-            </div>
-            <div class="col-sm-4">
-                <h1>Opinion</h1>
-                <table class="table table-striped">
-                    <?php query_posts('category_name=Opinion&post_status=publish,future'); ?>
-                    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                            <tr><td><strong><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
+                    endwhile;
+                else: endif;
+                ?>
+            </table>
+        </div>
+        <div class="col-sm-4">
+            <h1>Opinion</h1>
+            <table class="table table-striped">
+                <?php query_posts('category_name=Opinion&post_status=publish,future'); ?>
+                <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                        <tr><td><strong><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
                         <?php
-                        endwhile;
-                    else: endif;
-                    ?>
-                </table>
-            </div>
-            <div class="col-sm-4">
-                <h1>Elections Coverage</h1>
-                <table class="table table-striped">
-                    <?php query_posts('category_name=Elections&post_status=publish,future'); ?>
-                    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                            <tr><td><strong><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
+                    endwhile;
+                else: endif;
+                ?>
+            </table>
+        </div>
+        <div class="col-sm-4">
+            <h1>Elections Coverage</h1>
+            <table class="table table-striped">
+                <?php query_posts('category_name=Elections&post_status=publish,future'); ?>
+                <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                        <tr><td><strong><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
                         <?php
-                        endwhile;
-                    else: endif;
-                    ?>
-                </table>
-            </div>
+                    endwhile;
+                else: endif;
+                ?>
+            </table>
         </div>
     </div>
+</div>
 </div>
 <?php
 get_footer();
