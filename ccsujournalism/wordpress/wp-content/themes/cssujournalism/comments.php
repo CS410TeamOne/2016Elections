@@ -18,17 +18,12 @@ if ( post_password_required() ) {
 					number_format_i18n( get_comments_number() ), get_the_title() );
 			?>
 		</h2>
-    <div class="well">
         <ul>
 			<?php
-				wp_list_comments( array(
-					'style'       => 'ul',
-					'short_ping'  => true,
-					'avatar_size' => 0,
-				) );
+				wp_list_comments('callback=display_comments');
 			?>
+            </div>
 		</ul><!-- .comment-list -->
-    </div>
 
 	<?php endif; // have_comments() ?>
 

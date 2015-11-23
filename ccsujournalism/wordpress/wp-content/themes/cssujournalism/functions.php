@@ -31,8 +31,36 @@ function echo_first_image($postID) {
         }
     }
 }
-function format_comment($comment,$args,$depth){
-}
+    function display_comments($comment, $args, $depth) {
+    
+       $GLOBALS['comment'] = $comment; ?>
+<?php if($depth==1) :
+                 ?>
+</div>
+                <?php endif; ?>
+       <div class="well">
+           <?php printf(__('%s'), get_comment_author_link()) ?>
+           | <a class="comment-permalink" href="<?php echo htmlspecialchars ( get_comment_link( $comment->comment_ID ) ) ?>"><?php printf(__('%1$s'), get_comment_date(), get_comment_time()) ?></a> | 
+            <?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+                <hr/>
+            
+            <?php if ($comment->comment_approved == '0') : ?>
+            
+                <em><php _e('Your comment is awaiting moderation.') ?></em><br />
+            
+                    <?php endif; ?>
+                <p>
+            <?php comment_text(); ?>
+                </p>
+               
+                <?php if($depth>1) :
+                 ?>
+                </div>
+                <?php endif; ?>
+
+               <?php }
+                
+        
 function custom_sidebars() {
 
 	$args = array(
