@@ -6445,6 +6445,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
   position: absolute;
   left: 50%;
   top:5px;
+  height:50px;
   z-index: 15;
   width: 60%;
   padding-left: 0;

@@ -42,7 +42,7 @@
                                     <div style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">                                  
                                         <h1><?php the_title() ?></h1>
                                         <p><?php the_excerpt() ?> |
-                                            <a href='<?php the_permalink ?>'>Read More</a></p>           
+                                            <a href='<?php the_permalink(); ?>'>Read More</a></p>           
                                     </div>
                                 </div>
 
@@ -71,7 +71,7 @@
             <table class="table table-striped">
                 <?php query_posts('category_name=&post_status=publish,future'); ?>
                 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                        <tr><td><strong><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
+                        <tr><td><strong><a href="<?php the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
                         <?php
                     endwhile;
                 else: endif;
@@ -83,7 +83,7 @@
             <table class="table table-striped">
                 <?php query_posts('category_name=Opinion&post_status=publish,future'); ?>
                 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                        <tr><td><strong><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
+                        <tr><td><strong><a href="<?php the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
                         <?php
                     endwhile;
                 else: endif;

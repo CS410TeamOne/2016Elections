@@ -25,7 +25,7 @@
     <body <?php body_class(); ?>>
         <nav class="navbar navbar-default navbar-fixed-top">
             <?php
-            // Fix menu overlap bug..
+            // Fix menu overlap bug
             if (is_admin_bar_showing())
                 echo '<div style="min-height: 28px;"></div>';
             ?>
