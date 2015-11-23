@@ -25,9 +25,9 @@ function echo_first_image($postID) {
 
     if ($attachments) {
         foreach ($attachments as $attachment) {
-            $image_attributes = wp_get_attachment_image_src($attachment->ID, 'thumbnail') ? wp_get_attachment_image_src($attachment->ID, 'thumbnail') : wp_get_attachment_image_src($attachment->ID, 'full');
+            $image_attributes = wp_get_attachment_image_src($attachment->ID, 'full') ? wp_get_attachment_image_src($attachment->ID, 'full') : wp_get_attachment_image_src($attachment->ID, 'full');
 
-            echo wp_get_attachment_thumb_url($attachment->ID) . '" class="current">';
+            echo wp_get_attachment_url($attachment->ID) . '" class="current">';
         }
     }
 }

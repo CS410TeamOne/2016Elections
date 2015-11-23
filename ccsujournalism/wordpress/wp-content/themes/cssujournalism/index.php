@@ -6,8 +6,7 @@
 
             <?php
             #get the amount of top stories, then output the correct amount
-            #of indicators for the carousel.
-            #$top_story_count = 
+            #of indicators for the carousel. 
             $a = query_posts('category_name=Top Stories');
             $top_story_count = count($a);
             for ($x = 0; $x < $top_story_count; $x++) {
