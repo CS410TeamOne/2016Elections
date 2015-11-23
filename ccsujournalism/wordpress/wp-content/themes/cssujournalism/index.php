@@ -67,11 +67,12 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
-            <h1>New Posts</h1>
+            <h1><span class="glyphicon glyphicon-asterisk"></span> New Posts</h1>
             <table class="table table-striped">
                 <?php query_posts('category_name=&post_status=publish,future'); ?>
                 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                        <tr><td><strong><a href="<?php the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
+                <tr><td><span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number()?> </span></td>
+                        <td><strong><a href="<?php the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
                         <?php
                     endwhile;
                 else: endif;
@@ -79,11 +80,12 @@
             </table>
         </div>
         <div class="col-sm-4">
-            <h1>Opinion</h1>
+            <h1><span class="glyphicon glyphicon-comment"></span> Opinion</h1>
             <table class="table table-striped">
                 <?php query_posts('category_name=Opinion&post_status=publish,future'); ?>
                 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                        <tr><td><strong><a href="<?php the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
+                <tr><td><span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number()?> </span></td>
+                        <td><strong><a href="<?php the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
                         <?php
                     endwhile;
                 else: endif;
@@ -91,11 +93,52 @@
             </table>
         </div>
         <div class="col-sm-4">
-            <h1>Elections Coverage</h1>
+            <h1><span class="glyphicon glyphicon-flag"></span> Elections Coverage</h1>
             <table class="table table-striped">
                 <?php query_posts('category_name=Elections&post_status=publish,future'); ?>
                 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                        <tr><td><strong><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
+                        <tr>
+                            <tr><td><span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number()?> </span></td>
+                            <td><strong>
+                                    <a href="<?php echo the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?>
+                                </strong></a></td></tr>
+                        <?php
+                    endwhile;
+                else: endif;
+                ?>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <h1><span class="glyphicon glyphicon-fire"></span> Top Discussions</h1>
+            <table class="table table-striped">
+                 <?php 
+                $popular = new WP_Query('orderby=comment_count&posts_per_page=5'); ?> 
+                    <?php while ($popular->have_posts()) : $popular->the_post(); ?> 
+                <tr><td><span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number()?> </span></td>
+                    <td><b><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title()?></a></b></td></tr>
+ <?php endwhile; ?>
+            </table>
+        </div>
+        <div class="col-sm-4">
+            <h1><span class="glyphicon glyphicon-time"></span> Recent Posts</h1>
+            <table class="table table-striped">
+                <?php
+	$recent_posts = wp_get_recent_posts();
+	foreach( $recent_posts as $recent ){
+		echo '<tr><td><span class="badge"><span class="glyphicon glyphicon-comment"> </span> ' . get_comments_number() . '</span></td><td><strong><a href="' . get_permalink($recent["ID"]) . '">' .   $recent["post_title"].'</strong></td> </tr> ';
+	}
+?>
+            </table>
+        </div>
+        <div class="col-sm-4">
+            <h1><span class="glyphicon glyphicon-user"></span> Community Voices</h1>
+            <table class="table table-striped">
+                <?php query_posts('category_name=Community Voices&post_status=publish,future'); ?>
+                <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                <tr><td><span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number()?> </span></td>
+                        <td><strong><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
                         <?php
                     endwhile;
                 else: endif;
