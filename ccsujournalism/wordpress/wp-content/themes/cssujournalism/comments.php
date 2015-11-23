@@ -33,7 +33,8 @@ if ( post_password_required() ) {
 	?>
 		<p class="no-comments"><?php _e( 'Comments are closed.', 'twentyfifteen' ); ?></p>
 	<?php endif; ?>
+                <div class="well">
 
 	<?php comment_form(); ?>
-
+                </div>
 </div><!-- .comments-area -->
