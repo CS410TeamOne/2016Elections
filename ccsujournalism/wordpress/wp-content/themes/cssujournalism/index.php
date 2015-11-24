@@ -2,9 +2,8 @@
 
 <div id="fb-root"></div>
 
-<div class="sidebar-left"><?php get_sidebar('left'); ?></div>
-
-<div class="container-float-left">
+<section class="left-bar" id="sidebar_left"><?php get_sidebar('left'); ?></section>
+<div class="content">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -34,13 +33,14 @@
             ?>
             <?php query_posts('category_name=Top Stories&post_status=publish,future'); ?>
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+			
                     <div class="item <?php
                     if ($x == 0) {
                         echo "active";
                         $x = $x + 1;
                     }
                     ?> ">
-                        <img src="<?php echo_first_image(get_the_id()); ?>">
+                        <img src="<?php echo_first_image(get_the_id()); ?>" alt="ERROR: Failed to get Carousel Image!">
                         <div class="container">
                             <div class="carousel-caption-wrapper">
                                 <div class="carousel-caption">                                   
@@ -58,7 +58,7 @@
                 endwhile;
             else: endif;
             ?>
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+			<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
@@ -66,11 +66,15 @@
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
+            
         </div>
     </div>
      <hr/>
-     <div class="container-under-carousel">
     <div class="row">
+	<?php
+	#This needs to be re-written at some point so it can be done recursively on any category_name
+	#that is defined by the user.
+	?>
         <div class="col-md-6">
             <h1><span class="glyphicon glyphicon-asterisk"></span> New Posts</h1>
             <table class="table table-striped">
@@ -155,8 +159,7 @@
     </div>
 </div>
 </div>
-<div class="sidebar-right"><?php get_sidebar('right'); ?></div>
+<section class="right-bar" id="sidebar"><?php get_sidebar('right'); ?></section>
 
-<div class="container"></div>
 <?php
 get_footer();

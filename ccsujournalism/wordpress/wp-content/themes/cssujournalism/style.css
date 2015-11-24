@@ -4,25 +4,43 @@
 body { 
     padding-top: 60px; 
     padding-bottom: 40px; 
+	width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
-.sidebar-right{
-   float:left;
-    width:20%;
-    height:100vh;
+@media only screen and (max-width: 768px) {
+	.content{
+	width: 90%;
+	margin: 0 auto;
+    position: relative;
+    z-index: 100;
+    top: 12.5%;
 }
-.sidebar-left{
-    float:left;
-    width:20%;
-    height:100vh;
-    overflow:hidden;
+  .left-bar, .right-bar {
+      position: relative;
+      width: 90%;
+      height: 100px;
+      margin: 10px auto;
+      top: 10.5%;
+  }
 }
-.container-float-left{
-    padding-right: 15px;
-    padding-left: 15px;
-    float:left;
-    width:60%;
+.right-bar{
+    right: 0;
 }
-.container-under-carousel{
-    width:100%;
-    float:none;
+.left-bar{
+	left:0;
+}
+.left-bar, .right-bar {
+    position: fixed;
+    top: 10%;
+    width: 20%;
+    height: 90%;
+}
+.content {
+    width: 60%;
+    height: 100%;
+    margin: 0 auto;
+    margin-top: 60px;
+	padding:5px;
 }
