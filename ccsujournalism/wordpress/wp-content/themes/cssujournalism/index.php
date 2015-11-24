@@ -1,6 +1,5 @@
 <?php get_header(); ?>
 
-<div id="fb-root"></div>
 
 <div class="sidebar-left"><?php get_sidebar('left'); ?></div>
 
@@ -71,7 +70,7 @@
      <hr/>
      <div class="container-under-carousel">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <h1><span class="glyphicon glyphicon-asterisk"></span> New Posts</h1>
             <table class="table table-striped">
                 <?php query_posts('category_name=&post_status=publish,future=&posts_per_page=5'); ?>
@@ -84,7 +83,7 @@
                 ?>
             </table>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <h1><span class="glyphicon glyphicon-comment"></span> Opinion</h1>
             <table class="table table-striped">
                 <?php query_posts('category_name=Opinion&post_status=publish,future&posts_per_page=5'); ?>
@@ -99,7 +98,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <h1><span class="glyphicon glyphicon-flag"></span> Elections Coverage</h1>
             <table class="table table-striped">
                 <?php query_posts('category_name=Elections&post_status=publish,future&posts_per_page=5'); ?>
@@ -115,7 +114,7 @@
                 ?>
             </table>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <h1><span class="glyphicon glyphicon-fire"></span> Top Discussions</h1>
             <table class="table table-striped">
                 <?php $popular = new WP_Query('orderby=comment_count&posts_per_page=5'); ?> 
@@ -127,7 +126,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <h1><span class="glyphicon glyphicon-time"></span> Recent Posts</h1>
             <table class="table table-striped">
                 <?php
@@ -139,7 +138,7 @@
                 ?>
             </table>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <h1><span class="glyphicon glyphicon-user"></span> Community Voices</h1>
             <table class="table table-striped">
                 <?php query_posts('category_name=Community Voices&post_status=publish,future&posts_per_page=5'); ?>
