@@ -1,8 +1,15 @@
 <?php get_header(); ?>
 
 <div id="fb-root"></div>
-
-<section class="left-bar" id="sidebar_left"><?php get_sidebar('left'); ?></section>
+<?php
+// Fix menu overlap bug
+$str = '';
+if (is_admin_bar_showing()) {
+    $str = "style='top:95px;'";
+}
+?>
+<section class="left-bar" id="sidebar_left" <?php echo $str ?>><?php get_sidebar('left'); ?></section>
+<section class="right-bar" id="sidebar" <?php echo $str ?>><?php get_sidebar('right'); ?></section>
 <div class="content">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
@@ -33,7 +40,7 @@
             ?>
             <?php query_posts('category_name=Top Stories&post_status=publish,future'); ?>
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-			
+
                     <div class="item <?php
                     if ($x == 0) {
                         echo "active";
@@ -58,7 +65,7 @@
                 endwhile;
             else: endif;
             ?>
-			<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
@@ -66,17 +73,20 @@
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
-            
+
         </div>
     </div>
-     <hr/>
+    <hr/>
     <div class="row">
-	<?php
-	#This needs to be re-written at some point so it can be done recursively on any category_name
-	#that is defined by the user.
-	?>
+        <?php
+        #TODO:
+        #this should be re-written as a loop that goes through each category
+        #and displays 5 posts from each. We will need an hashmap of glyphicons
+        #perhaps also a custom component in wordpress so we can assign glyphs
+        #to categories for display?
+        ?>
         <div class="col-md-6">
-            <h1><span class="glyphicon glyphicon-asterisk"></span> New Posts</h1>
+            <a href="./category.php"><h1><span class="glyphicon glyphicon-time"></span> New Posts</h1></a>
             <table class="table table-striped">
                 <?php query_posts('category_name=&post_status=publish,future=&posts_per_page=5'); ?>
                 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -89,7 +99,7 @@
             </table>
         </div>
         <div class="col-md-6">
-            <h1><span class="glyphicon glyphicon-comment"></span> Opinion</h1>
+            <a href="./category.php"><h1><span class="glyphicon glyphicon-comment"></span> Opinion</h1></a>
             <table class="table table-striped">
                 <?php query_posts('category_name=Opinion&post_status=publish,future&posts_per_page=5'); ?>
                 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -104,11 +114,10 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <h1><span class="glyphicon glyphicon-flag"></span> Elections Coverage</h1>
+            <a href="./category.php"><h1><span class="glyphicon glyphicon-flag"></span> Elections Coverage</h1></a>
             <table class="table table-striped">
                 <?php query_posts('category_name=Elections&post_status=publish,future&posts_per_page=5'); ?>
                 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                        <tr>
                         <tr><td><span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> </span></td>
                             <td><strong>
                                     <a href="<?php echo the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?>
@@ -120,31 +129,32 @@
             </table>
         </div>
         <div class="col-md-6">
-            <h1><span class="glyphicon glyphicon-fire"></span> Top Discussions</h1>
+            <a href="./category.php"><h1><span class="glyphicon glyphicon-fire"></span> Top Discussions</h1></a>
             <table class="table table-striped">
                 <?php $popular = new WP_Query('orderby=comment_count&posts_per_page=5'); ?> 
                 <?php while ($popular->have_posts()) : $popular->the_post(); ?> 
                     <tr><td><span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> </span></td>
-                        <td><b><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title() ?></a></b></td></tr>
+                            <td><strong><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
                 <?php endwhile; ?>
             </table>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <h1><span class="glyphicon glyphicon-time"></span> Recent Posts</h1>
+            <a href="./category.php"><h1><span class="glyphicon glyphicon-info-sign"></span> Issues</h1></a>
             <table class="table table-striped">
-                <?php
-                $args = array('numberposts' => '5');
-                $recent_posts = wp_get_recent_posts($args);
-                foreach ($recent_posts as $recent) {
-                    echo '<tr><td><span class="badge"><span class="glyphicon glyphicon-comment"> </span> ' . get_comments_number() . '</span></td><td><strong><a href="' . get_permalink($recent["ID"]) . '">' . $recent["post_title"] . '</strong></td> </tr> ';
-                }
+                <?php query_posts('category_name=Issues&post_status=publish,future&posts_per_page=5'); ?>
+                <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                        <tr><td><span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> </span></td>
+                            <td><strong><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
+                        <?php
+                    endwhile;
+                else: endif;
                 ?>
             </table>
         </div>
         <div class="col-md-6">
-            <h1><span class="glyphicon glyphicon-user"></span> Community Voices</h1>
+            <a href="./category.php"><h1><span class="glyphicon glyphicon-user"></span> Community Voices</h1></a>
             <table class="table table-striped">
                 <?php query_posts('category_name=Community Voices&post_status=publish,future&posts_per_page=5'); ?>
                 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -159,7 +169,5 @@
     </div>
 </div>
 </div>
-<section class="right-bar" id="sidebar"><?php get_sidebar('right'); ?></section>
-
 <?php
 get_footer();

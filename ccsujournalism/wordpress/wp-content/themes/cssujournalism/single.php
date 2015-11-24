@@ -3,7 +3,7 @@
     <div class='jumbotron'>
         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                 <h2> <?php the_title() ?></h2>
-                <small> <?php the_author() ?> | <?php the_time('F jS, Y') ?></small>
+                <small><span class="glyphicon glyphicon-list"></span> <?php the_category(', ') ?> | <span class="glyphicon glyphicon-user"></span> <?php the_author() ?> | <span class="glyphicon glyphicon-time"></span> <?php the_time('F jS, Y') ?></small>
                 <hr/>
                 <div class='container'>
                     <?php the_content() ?>

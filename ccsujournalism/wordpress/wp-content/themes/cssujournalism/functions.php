@@ -31,7 +31,7 @@ function echo_first_image($postID) {
         }
     }
 }
-
+#Code to display comments. Called in comments.php using the &callback= function.
 function display_comments($comment, $args, $depth) {
 
     $GLOBALS['comment'] = $comment;
@@ -39,11 +39,17 @@ function display_comments($comment, $args, $depth) {
     <?php if ($depth == 1) :
         ?>
         </div>
-        <?php endif; ?>
-    <div class="well well-sm">
+    <?php endif; ?>
+    <?php
+    $darken = '';
+    if ($depth % 2 == 0) {
+        $darken = "style='background-color:lightgrey'";
+    }
+    ?>
+    <div class="well well-sm" <?php echo $darken ?>>
         <?php printf(__('%s'), get_comment_author_link()) ?>
         | <a class="comment-permalink" href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)) ?>"><?php printf(__('%1$s'), get_comment_date(), get_comment_time()) ?></a> | 
-        <?php comment_reply_link(array_merge($args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+    <?php comment_reply_link(array_merge($args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
         <hr/>
 
     <?php if ($comment->comment_approved == '0') : ?>
@@ -52,15 +58,15 @@ function display_comments($comment, $args, $depth) {
 
             <?php endif; ?>
         <p>
-        <?php comment_text(); ?>
+    <?php comment_text(); ?>
         </p>
 
-    <?php if ($depth > 1) :
-        ?>
+        <?php if ($depth > 1) :
+            ?>
         </div>
     <?php endif; ?>
 
-<?php
+    <?php
 }
 
 function custom_sidebars() {

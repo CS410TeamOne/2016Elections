@@ -34,10 +34,9 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="<?php echo site_url(); ?>">Home</a></li>
-                        <li><a href="<?php echo site_url(); ?>/map/">Map</a></li>
+                        <li class="active"><a href="<?php echo site_url(); ?>"><span class="glyphicon glyphicon-home"></span></a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sections<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list"></span> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <?php
                                 $args = array(
@@ -79,7 +78,7 @@
                             get_currentuserinfo();
                         }
                         if (current_user_can('read')) {
-                            echo "<li><a href=\"" . site_url() . "/wp-admin\">" . $current_user->display_name . "</a></li>";
+                            echo "<li><a href=\"" . site_url() . "/wp-admin\"> <span class='glyphicon glyphicon-cog'></span>  " . $current_user->display_name . "</a></li>";
                         }
                         else {
                             echo "<li><a href=\"" . site_url() . "/wp-login.php?action=register\">Register</a></li>";

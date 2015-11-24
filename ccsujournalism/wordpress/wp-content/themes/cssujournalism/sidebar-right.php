@@ -9,7 +9,7 @@
 <hr/>
 <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><span class="glyphicon glyphicon-ok"></span> More Quick Links</h3>
+                <h3 class="panel-title"><span class="glyphicon glyphicon-ok"></span> Further Reading </h3>
             </div>
             <div class="panel-body">
                 <ul>
