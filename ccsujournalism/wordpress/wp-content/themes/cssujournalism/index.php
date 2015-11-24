@@ -1,5 +1,9 @@
 <?php get_header(); ?>
-<div class="container" style="margin-top:0px;">
+
+
+<div class="sidebar-left"><?php get_sidebar('left'); ?></div>
+
+<div class="container-float-left">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -63,11 +67,10 @@
             </a>
         </div>
     </div>
-</div>
-
-<div class="container">
+     <hr/>
+     <div class="container-under-carousel">
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-md-5">
             <h1><span class="glyphicon glyphicon-asterisk"></span> New Posts</h1>
             <table class="table table-striped">
                 <?php query_posts('category_name=&post_status=publish,future=&posts_per_page=5'); ?>
@@ -80,7 +83,7 @@
                 ?>
             </table>
         </div>
-        <div class="col-sm-4">
+        <div class="col-md-5">
             <h1><span class="glyphicon glyphicon-comment"></span> Opinion</h1>
             <table class="table table-striped">
                 <?php query_posts('category_name=Opinion&post_status=publish,future&posts_per_page=5'); ?>
@@ -93,7 +96,9 @@
                 ?>
             </table>
         </div>
-        <div class="col-sm-4">
+    </div>
+    <div class="row">
+        <div class="col-md-5">
             <h1><span class="glyphicon glyphicon-flag"></span> Elections Coverage</h1>
             <table class="table table-striped">
                 <?php query_posts('category_name=Elections&post_status=publish,future&posts_per_page=5'); ?>
@@ -109,9 +114,7 @@
                 ?>
             </table>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
+        <div class="col-md-5">
             <h1><span class="glyphicon glyphicon-fire"></span> Top Discussions</h1>
             <table class="table table-striped">
                 <?php $popular = new WP_Query('orderby=comment_count&posts_per_page=5'); ?> 
@@ -121,7 +124,9 @@
                 <?php endwhile; ?>
             </table>
         </div>
-        <div class="col-sm-4">
+    </div>
+    <div class="row">
+        <div class="col-md-5">
             <h1><span class="glyphicon glyphicon-time"></span> Recent Posts</h1>
             <table class="table table-striped">
                 <?php
@@ -133,7 +138,7 @@
                 ?>
             </table>
         </div>
-        <div class="col-sm-4">
+        <div class="col-md-5">
             <h1><span class="glyphicon glyphicon-user"></span> Community Voices</h1>
             <table class="table table-striped">
                 <?php query_posts('category_name=Community Voices&post_status=publish,future&posts_per_page=5'); ?>
@@ -149,5 +154,8 @@
     </div>
 </div>
 </div>
+<div class="sidebar-right"><?php get_sidebar('right'); ?></div>
+
+<div class="container"></div>
 <?php
 get_footer();

@@ -29,7 +29,6 @@
             if (is_admin_bar_showing())
                 echo '<div style="min-height: 28px;"></div>';
             ?>
-            <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="<?php echo site_url(); ?>"><?php bloginfo('name'); ?></a>
                 </div>
@@ -89,6 +88,5 @@
                         ?>
                     </ul>
                 </div>
-            </div>
         </nav>
         <!-- .site-header -->

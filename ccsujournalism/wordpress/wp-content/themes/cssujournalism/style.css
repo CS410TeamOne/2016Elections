@@ -5,3 +5,24 @@ body {
     padding-top: 60px; 
     padding-bottom: 40px; 
 }
+.sidebar-right{
+   float:left;
+    width:15%;
+    height:100vh;
+}
+.sidebar-left{
+    float:left;
+    width:20%;
+    height:100vh;
+    overflow:hidden;
+}
+.container-float-left{
+    padding-right: 15px;
+    padding-left: 15px;
+    float:left;
+    width:60%;
+}
+.container-under-carousel{
+    width:100%;
+    float:none;
+}
