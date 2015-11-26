@@ -1,5 +1,19 @@
 <?php
-
+require_once("tax-meta-class/Tax-meta-class.php");
+$config = array(
+   'id' => 'glyph',                         // meta box id, unique per meta box
+   'title' => 'Glyphicons',                      // meta box title
+   'pages' => array('category'),                    // taxonomy name, accept categories, post_tag and custom taxonomies
+   'context' => 'normal',                           // where the meta box appear: normal (default), advanced, side; optional
+   'fields' => array(),                             // list of meta fields (can be added by field arrays)
+   'local_images' => false,                         // Use local or hosted images (meta box images for add/remove)
+   'use_with_theme' => true           //change path if used with theme set to true, false for a plugin or anything else for a custom path(default false).
+);
+$my_meta = new Tax_Meta_Class($config);
+//text field
+$my_meta->addText('glyphicon', array('name' => 'Glyphicon'));
+//textarea field
+$my_meta->Finish();
 function wpbootstrap_scripts_with_jquery() {
     // Register the script like this for a theme:
     wp_register_script('custom-script', get_template_directory_uri() . '/js/bootstrap.js', array('jquery'));
@@ -82,3 +96,25 @@ function custom_sidebars() {
 
 add_action('widgets_init', 'custom_sidebars');
 remove_filter('the_excerpt', 'wpautop');
+function get_category_array(){
+    $args = array(
+	'type'                     => 'post',
+	'child_of'                 => 0,
+	'parent'                   => '',
+	'orderby'                  => 'name',
+	'order'                    => 'ASC',
+	'hide_empty'               => 1,
+	'hierarchical'             => 1,
+	'exclude'                  => '',
+	'include'                  => '',
+	'number'                   => '',
+	'taxonomy'                 => 'category',
+	'pad_counts'               => false 
+
+);
+return get_categories( $args );
+}
+function display_catagory($category){
+    
+
+}
