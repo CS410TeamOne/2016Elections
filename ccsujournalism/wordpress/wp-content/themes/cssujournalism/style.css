@@ -39,6 +39,12 @@ body {
     width: 20%;
     height: 90%;
 }
+.left-bar li{
+    list-style-type:none;
+}
+.right-bar li{
+    list-style-type:none;
+}
 .content {
     width: 60%;
     height: 100%;

@@ -1,5 +1,8 @@
 <?php
+//Add thumbnail support
 add_theme_support('post-thumbnails');
+//For taxonomy meta. This is how custom fields are added to a category page. 
+//in this case, its fto set a glyphicon.
 require_once("tax-meta-class/Tax-meta-class.php");
 $config = array(
    'id' => 'glyph',                         // meta box id, unique per meta box
@@ -15,6 +18,7 @@ $my_meta = new Tax_Meta_Class($config);
 $my_meta->addText('glyphicon', array('name' => 'Glyphicon'));
 //textarea field
 $my_meta->Finish();
+//Enable bootstrap with jquery
 function wpbootstrap_scripts_with_jquery() {
     // Register the script like this for a theme:
     wp_register_script('custom-script', get_template_directory_uri() . '/js/bootstrap.js', array('jquery'));
@@ -23,7 +27,7 @@ function wpbootstrap_scripts_with_jquery() {
 }
 
 add_action('wp_enqueue_scripts', 'wpbootstrap_scripts_with_jquery');
-
+//Code to get first image from a post. Used in the carousel.
 function echo_first_image($postID) {
     $args = array(
         'numberposts' => 1,
@@ -44,7 +48,7 @@ function echo_first_image($postID) {
         }
     }
 }
-#Code to display comments. Called in comments.php using the &callback= function.
+//Code to display comments. Called in comments.php using the &callback= function.
 function display_comments($comment, $args, $depth) {
 
     $GLOBALS['comment'] = $comment;
@@ -67,20 +71,30 @@ function display_comments($comment, $args, $depth) {
 
     <?php
 }
-
+//Custom sidebars
 function custom_sidebars() {
 
-    $args = array(
-        'id' => 'twitter',
+    $sidebar_left = array(
+        'id' => 'left',
         'class' => 'sidebar',
-        'name' => __('twitter', 'text_domain'),
-        'description' => __('To display popular discussions sidebar', 'text_domain'),
+        'name' => __('sidebar-left', 'text_domain'),
+        'description' => __('Sidebar for the lefthand side of the screen', 'text_domain'),
     );
-    register_sidebar($args);
+    $sidebar_right = array(
+        'id' => 'right',
+        'class'=>'sidebar',
+        'name' => __('sidebar-right', 'text_domain'),
+        'description' => __('Sidebar for the righthand side of the screen', 'text_domain'),
+        );
+        register_sidebar($sidebar_left);
+        register_sidebar($sidebar_right);
+       
 }
 
 add_action('widgets_init', 'custom_sidebars');
 remove_filter('the_excerpt', 'wpautop');
+//returns an array of the categories.
+//This should probably have a feature that allows the user to set which categories appear and in what order.
 function get_category_array(){
     $args = array(
 	'type'                     => 'post',
@@ -97,10 +111,25 @@ function get_category_array(){
 	'pad_counts'               => false 
 
 );
-return get_categories( $args );
+    return get_categories( $args );
 }
 function display_catagory($category){
 }
 function get_video_glyph(){
     return "<div style=\"color:red;display:inline;\"><span class=\"glyphicon glyphicon-film\"></span></div>";
+}
+function get_category_glyph($category){
+                            $default_glyph = "th-list";
+                            #this is probably awful and inefficent but hey whats a few loops among friends
+                            $custom_terms = get_terms("category");
+                            foreach ($custom_terms as $term) {
+                                if ($term->name == $category->name) {
+
+                                    $src = get_tax_meta($term->term_id, 'glyphicon');
+                                    if($src==""){
+                                        return $default_glyph;
+                                    }
+                                    return $src;
+                                }
+                            }
 }

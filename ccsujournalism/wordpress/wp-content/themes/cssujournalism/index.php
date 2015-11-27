@@ -16,14 +16,12 @@ if (is_admin_bar_showing()) {
 else
 {
 ?>
-<section class="left-bar" id="sidebar_left" <?php echo $str ?>><?php get_sidebar('left'); ?></section>
-<section class="right-bar" id="sidebar" <?php echo $str ?>><?php get_sidebar('right'); ?></section>
+<section class="left-bar" id="sidebar_left" <?php echo $str ?>><?php dynamic_sidebar('left'); ?></section>
+<section class="right-bar" id="sidebar_right" <?php echo $str ?>><?php dynamic_sidebar('right'); ?></section>
 <div class="content">
 <?php
 }
 ?>
-
-
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -45,8 +43,7 @@ else
             ?>
         </ol>
         <div class="carousel-inner" role="listbox">
-
-            <?php
+       <?php
             #this is a counter for the 'active' css to be placed on the first carousel slide object.
             #there is probably a better way to do this, but this will work.
             static $x = 0
@@ -95,15 +92,16 @@ else
     -->
     <div class="row">
         <div class="col-md-6">
-            <a href="./category.php"><h1><span class="glyphicon glyphicon-time"></span> New Posts</h1></a>
+           <h1><span class="glyphicon glyphicon-time"></span> New Posts</h1>
             <table class="table table-striped">
                 <?php query_posts('category_name=&post_status=publish,future=&posts_per_page=5'); ?>
                 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                        <tr><td><?php  if(has_post_thumbnail()){
+                        <tr><td><a href="<?php  the_permalink();?>"><?php
+                        if(has_post_thumbnail()){
                                 the_post_thumbnail(array(100,100)); 
                                 }else{
                                     echo '<img src="' . get_template_directory_uri() . '/img/no_img.jpg"/>';
-                                }?></td>
+                                }?></a></td>
                                     <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?>
                                     <?php if(in_category("videos")){
                                     echo get_video_glyph();
@@ -117,15 +115,16 @@ else
             </table>
         </div>
         <div class="col-md-6">
-            <a href="./category.php"><h1><span class="glyphicon glyphicon-fire"></span> Top Discussions</h1></a>
+            <h1><span class="glyphicon glyphicon-fire"></span> Top Discussions</h1>
             <table class="table table-striped">
                 <?php $popular = new WP_Query('orderby=comment_count&posts_per_page=5'); ?> 
                 <?php while ($popular->have_posts()) : $popular->the_post(); ?> 
-                    <tr><td><?php  if(has_post_thumbnail()){
+                    <tr><td><a href="<?php  the_permalink();?>"><?php
+                        if(has_post_thumbnail()){
                                 the_post_thumbnail(array(100,100)); 
                                 }else{
                                     echo '<img src="' . get_template_directory_uri() . '/img/no_img.jpg"/>';
-                                }?></td>
+                                }?></a></td>
                                     <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?>
                                     <?php if(in_category("videos")){
                                     echo get_video_glyph();
@@ -142,30 +141,19 @@ else
             if ($category->name != 'Uncategorized') {
                 ?>
                 <div class="col-md-6">
-                    <a href="./category.php"><h1><span class="glyphicon glyphicon-<?php
-                            $default_glyph = "th-list";
-                            #this is probably awful and inefficent but hey whats a few loops among friends
-                            $custom_terms = get_terms("category");
-                            foreach ($custom_terms as $term) {
-                                if ($term->name == $category->name) {
-
-                                    $src = get_tax_meta($term->term_id, 'glyphicon');
-                                    if($src==""){
-                                        echo $default_glyph;
-                                    }
-                                    echo $src;
-                                }
-                            }
+                    <a href="./category/<?php echo $category->slug ?>"><h1><span class="glyphicon glyphicon-<?php
+                            echo get_category_glyph($category);
                             ?>"></span> <?php echo $category->name ?> </h1></a>
                     <table class="table table-striped table-condensed">
                         <?php query_posts('category_name=' . $category->name . '&post_status=publish,future=&posts_per_page=5'); ?>
                         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                                 <tr><td>
-                                <?php  if(has_post_thumbnail()){
+                                <a href="<?php  the_permalink();?>"><?php
+                        if(has_post_thumbnail()){
                                 the_post_thumbnail(array(100,100)); 
                                 }else{
                                     echo '<img src="' . get_template_directory_uri() . '/img/no_img.jpg"/>';
-                                }?></td>
+                                }?></a></td>
                                     <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?>
                                     <?php if(in_category("videos")){
                                     echo get_video_glyph();
@@ -185,4 +173,6 @@ else
     <!--This should be changed... just a quick fix to get the footer to display properly.-->
     <div class="container"></div>
 <?php
-get_footer();
+get_footer();?>
+</body>
+</html>
