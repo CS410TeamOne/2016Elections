@@ -526,8 +526,16 @@ class Tax_Meta_Class {
     if($field["id"] == 'glyphicon'){
           echo "Select a glyphicon to associate with this category. A list of glyphicons can be found <a href=\"http://getbootstrap.com/components/\" target=\"_blank\"> here. </a>";
      echo "Enter the string starting after the glyphicon glyphicon-. For example, for the 'plus' glyphicon, simply enter plus.<br/>";
+    
     }
-    echo "<input type='text' class='at-text' name='{$field['id']}' id='{$field['id']}' value='{$meta}' style='{$field['style']}' size='30' />";
+    
+    echo "<input type='text' class='at-text' name='{$field['id']}' id='{$field['id']}' value='{$meta}' style='{$field['style']}' size='30'/>";
+     echo "<script type='text/javascript'>";
+     echo "document.write(\"";
+     echo "<span class='glyphicon glyphicon-\"";
+     echo "+ document.getElementById('glyphicon').value + ";
+     echo "\"'></span>\");";
+     echo "</script>";
     $this->show_field_end( $field, $meta );
   }
 

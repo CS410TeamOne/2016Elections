@@ -8,9 +8,22 @@ if (is_admin_bar_showing()) {
     $str = "style='top:95px;'";
 }
 ?>
+<?php if (wp_is_mobile() )
+{?>
+<div class="content-mobile">
+<?php
+}
+else
+{
+?>
 <section class="left-bar" id="sidebar_left" <?php echo $str ?>><?php get_sidebar('left'); ?></section>
 <section class="right-bar" id="sidebar" <?php echo $str ?>><?php get_sidebar('right'); ?></section>
 <div class="content">
+<?php
+}
+?>
+
+
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -77,14 +90,14 @@ if (is_admin_bar_showing()) {
         </div>
     </div>
     <hr/>
-    <div class="row">
+    <!-- Always display new stories and top discussions-->
         <div class="col-md-6">
             <a href="./category.php"><h1><span class="glyphicon glyphicon-time"></span> New Posts</h1></a>
             <table class="table table-striped">
                 <?php query_posts('category_name=&post_status=publish,future=&posts_per_page=5'); ?>
                 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                         <tr><td><span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> </span></td>
-                            <td><strong><a href="<?php the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
+                            <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></b></a></td></tr>
                         <?php
                     endwhile;
                 else: endif;
@@ -97,10 +110,10 @@ if (is_admin_bar_showing()) {
                 <?php $popular = new WP_Query('orderby=comment_count&posts_per_page=5'); ?> 
                 <?php while ($popular->have_posts()) : $popular->the_post(); ?> 
                     <tr><td><span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> </span></td>
-                        <td><strong><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
+                        <td><b><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></b></a></td></tr>
                 <?php endwhile; ?>
             </table>
-        </div>
+        </div>  
         <?php
         $category_array = get_category_array();
         foreach ($category_array as $category) {
@@ -108,21 +121,33 @@ if (is_admin_bar_showing()) {
                 ?>
                 <div class="col-md-6">
                     <a href="./category.php"><h1><span class="glyphicon glyphicon-<?php
+                            $default_glyph = "th-list";
                             #this is probably awful and inefficent but hey whats a few loops among friends
                             $custom_terms = get_terms("category");
                             foreach ($custom_terms as $term) {
                                 if ($term->name == $category->name) {
 
                                     $src = get_tax_meta($term->term_id, 'glyphicon');
+                                    if($src==""){
+                                        echo $default_glyph;
+                                    }
                                     echo $src;
                                 }
                             }
                             ?>"></span> <?php echo $category->name ?> </h1></a>
-                    <table class="table table-striped">
+                    <table class="table table-striped table-condensed">
                         <?php query_posts('category_name=' . $category->name . '&post_status=publish,future=&posts_per_page=5'); ?>
                         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                                <tr><td><span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> </span></td>
-                                    <td><strong><a href="<?php the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></strong></a></td></tr>
+                                <tr><td style="white-space:nowrap;"><?php the_post_thumbnail(array(100,100)); ?></td>
+                                
+                 
+                              
+                                    <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?>
+                                    <?php if(in_category("videos")){
+                                    echo get_video_glyph();
+                                    }?>
+                                    <span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> 
+                                </td></tr>
                                 <?php
                             endwhile;
                         else: endif;
@@ -134,6 +159,7 @@ if (is_admin_bar_showing()) {
         } ?>
 
     </div>
-</div>
+    <!--This should be changed... just a quick fix to get the footer to display properly.-->
+    <div class="container"></div>
 <?php
 get_footer();

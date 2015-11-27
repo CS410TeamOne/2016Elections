@@ -46,3 +46,13 @@ body {
     margin-top: 60px;
     padding:5px;
 }
+.content-mobile{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    margin-top: 60px;
+    padding:5px;
+}
+table td:last-child{
+    width:100%;
+}

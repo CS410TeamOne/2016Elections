@@ -1,4 +1,5 @@
 <?php
+add_theme_support('post-thumbnails');
 require_once("tax-meta-class/Tax-meta-class.php");
 $config = array(
    'id' => 'glyph',                         // meta box id, unique per meta box
@@ -22,8 +23,6 @@ function wpbootstrap_scripts_with_jquery() {
 }
 
 add_action('wp_enqueue_scripts', 'wpbootstrap_scripts_with_jquery');
-?>
-<?php
 
 function echo_first_image($postID) {
     $args = array(
@@ -50,17 +49,7 @@ function display_comments($comment, $args, $depth) {
 
     $GLOBALS['comment'] = $comment;
     ?>
-    <?php if ($depth == 1) :
-        ?>
-        </div>
-    <?php endif; ?>
-    <?php
-    $darken = '';
-    if ($depth % 2 == 0) {
-        $darken = "style='background-color:lightgrey'";
-    }
-    ?>
-    <div class="well well-sm" <?php echo $darken ?>>
+    <blockquote>
         <?php printf(__('%s'), get_comment_author_link()) ?>
         | <a class="comment-permalink" href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)) ?>"><?php printf(__('%1$s'), get_comment_date(), get_comment_time()) ?></a> | 
     <?php comment_reply_link(array_merge($args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
@@ -74,11 +63,7 @@ function display_comments($comment, $args, $depth) {
         <p>
     <?php comment_text(); ?>
         </p>
-
-        <?php if ($depth > 1) :
-            ?>
-        </div>
-    <?php endif; ?>
+        </blockquote>
 
     <?php
 }
@@ -115,6 +100,7 @@ function get_category_array(){
 return get_categories( $args );
 }
 function display_catagory($category){
-    
-
+}
+function get_video_glyph(){
+    return "<div style=\"color:red;display:inline;\"><span class=\"glyphicon glyphicon-film\"></span></div>";
 }

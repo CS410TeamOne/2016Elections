@@ -19,6 +19,8 @@
                     </div>
                 </div>
                 <hr/>
+                </div>
+                <div class="well">
                 <?php endif; ?>
                 <?php comments_template() ?>
                 
@@ -26,6 +28,7 @@
             endwhile;
         else: endif;
         ?>
+        </div>
     </div>
 </div>
 <?php get_footer() ?>    
