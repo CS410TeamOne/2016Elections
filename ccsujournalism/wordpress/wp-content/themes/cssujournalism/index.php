@@ -90,14 +90,26 @@ else
         </div>
     </div>
     <hr/>
-    <!-- Always display new stories and top discussions-->
+    <!-- Always display new stories and top discussions
+    code to display a col-md-6 should probably be written as a function, but this will do for now.
+    -->
+    <div class="row">
         <div class="col-md-6">
             <a href="./category.php"><h1><span class="glyphicon glyphicon-time"></span> New Posts</h1></a>
             <table class="table table-striped">
                 <?php query_posts('category_name=&post_status=publish,future=&posts_per_page=5'); ?>
                 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                        <tr><td><span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> </span></td>
-                            <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></b></a></td></tr>
+                        <tr><td><?php  if(has_post_thumbnail()){
+                                the_post_thumbnail(array(100,100)); 
+                                }else{
+                                    echo '<img src="' . get_template_directory_uri() . '/img/no_img.jpg"/>';
+                                }?></td>
+                                    <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?>
+                                    <?php if(in_category("videos")){
+                                    echo get_video_glyph();
+                                    }?>
+                                    <span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> 
+                                </td></tr>
                         <?php
                     endwhile;
                 else: endif;
@@ -109,11 +121,21 @@ else
             <table class="table table-striped">
                 <?php $popular = new WP_Query('orderby=comment_count&posts_per_page=5'); ?> 
                 <?php while ($popular->have_posts()) : $popular->the_post(); ?> 
-                    <tr><td><span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> </span></td>
-                        <td><b><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?> | <?php the_excerpt(); ?></b></a></td></tr>
+                    <tr><td><?php  if(has_post_thumbnail()){
+                                the_post_thumbnail(array(100,100)); 
+                                }else{
+                                    echo '<img src="' . get_template_directory_uri() . '/img/no_img.jpg"/>';
+                                }?></td>
+                                    <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?>
+                                    <?php if(in_category("videos")){
+                                    echo get_video_glyph();
+                                    }?>
+                                    <span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> 
+                                </td></tr>
                 <?php endwhile; ?>
             </table>
-        </div>  
+        </div> 
+</div>        
         <?php
         $category_array = get_category_array();
         foreach ($category_array as $category) {
@@ -138,10 +160,12 @@ else
                     <table class="table table-striped table-condensed">
                         <?php query_posts('category_name=' . $category->name . '&post_status=publish,future=&posts_per_page=5'); ?>
                         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                                <tr><td style="white-space:nowrap;"><?php the_post_thumbnail(array(100,100)); ?></td>
-                                
-                 
-                              
+                                <tr><td>
+                                <?php  if(has_post_thumbnail()){
+                                the_post_thumbnail(array(100,100)); 
+                                }else{
+                                    echo '<img src="' . get_template_directory_uri() . '/img/no_img.jpg"/>';
+                                }?></td>
                                     <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?>
                                     <?php if(in_category("videos")){
                                     echo get_video_glyph();
@@ -157,8 +181,7 @@ else
 
             <?php }
         } ?>
-
-    </div>
+        </div>
     <!--This should be changed... just a quick fix to get the footer to display properly.-->
     <div class="container"></div>
 <?php
