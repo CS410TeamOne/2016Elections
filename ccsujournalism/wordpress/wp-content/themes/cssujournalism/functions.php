@@ -4,6 +4,7 @@ add_theme_support('post-thumbnails');
 //For taxonomy meta. This is how custom fields are added to a category page. 
 //in this case, its fto set a glyphicon.
 require_once("tax-meta-class/Tax-meta-class.php");
+require_once('custom-options.php');
 $config = array(
    'id' => 'glyph',                         // meta box id, unique per meta box
    'title' => 'Glyphicons',                      // meta box title
@@ -113,10 +114,18 @@ function get_category_array(){
 );
     return get_categories( $args );
 }
+function get_sorted_cat_arr(){
+    $option_array = get_option('plugin_options');
+    return explode(",", $option_array["category_order"]); //definitely my favorite PHP function
+}
+function get_cat_object($category_str){
+    return get_term_by('name',$category_str,'category');
+}
+    
 function display_catagory($category){
 }
 function get_video_glyph(){
-    return "<div style=\"color:red;display:inline;\"><span class=\"glyphicon glyphicon-film\"></span></div>";
+    return "<div style=\"color:red;display:inline;\"><span class=\"glyphicon glyphicon-facetime-video\"></span></div>";
 }
 function get_category_glyph($category){
                             $default_glyph = "th-list";

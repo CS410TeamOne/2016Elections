@@ -22,11 +22,14 @@ else
 <?php
 }
 ?>
+<?php
+            if(!wp_is_mobile()){?>
+    
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
 
-            <?php
+            
             #get the amount of top stories, then output the correct amount
             #of indicators for the carousel. 
             $a = query_posts('category_name=Top Stories');
@@ -62,7 +65,9 @@ else
                             <div class="carousel-caption-wrapper">
                                 <div class="carousel-caption">                                   
                                     <div style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">                                  
-                                        <h1><?php the_title() ?></h1>
+                                        <h1><?php the_title() ?> <?php if(in_category("videos")){
+                                    echo get_video_glyph();
+                                    }?></h1>
                                         <p><?php the_excerpt() ?> |
                                             <a href='<?php the_permalink(); ?>'>Read More</a></p>           
                                     </div>
@@ -87,6 +92,7 @@ else
         </div>
     </div>
     <hr/>
+            <?php }?>
     <!-- Always display new stories and top discussions
     code to display a col-md-6 should probably be written as a function, but this will do for now.
     -->
@@ -133,12 +139,20 @@ else
                                 </td></tr>
                 <?php endwhile; ?>
             </table>
-        </div> 
-</div>        
+        </div>
+        
         <?php
-        $category_array = get_category_array();
-        foreach ($category_array as $category) {
+        if(!wp_is_mobile())
+            echo "<div class='row'>";
+        $sorted_name_array = get_sorted_cat_arr();
+        static $counter = 0;
+        foreach ($sorted_name_array as $cat) {
+            $category = get_cat_object($cat);
             if ($category->name != 'Uncategorized') {
+                if($counter%2 == 0 && !wp_is_mobile()){
+                    echo "</div>";
+                    echo "<div class='row'>";
+                }
                 ?>
                 <div class="col-md-6">
                     <a href="./category/<?php echo $category->slug ?>"><h1><span class="glyphicon glyphicon-<?php
@@ -166,10 +180,12 @@ else
                         ?>
                     </table>
                 </div>
-
-            <?php }
+            <?php
+$counter++;}
         } ?>
+        <?php if($counter%2 != 0 && !wp_is_mobile()) echo "</div>"; ?>
         </div>
+        </div>  
     <!--This should be changed... just a quick fix to get the footer to display properly.-->
     <div class="container"></div>
 <?php
