@@ -145,10 +145,6 @@ function get_cat_object($category_str) {
     return get_term_by('name', $category_str, 'category');
 }
 
-function display_catagory($category) {
-    
-}
-
 function get_video_glyph() {
     return "<div style=\"color:red;display:inline;\"><span class=\"glyphicon glyphicon-facetime-video\"></span></div>";
 }

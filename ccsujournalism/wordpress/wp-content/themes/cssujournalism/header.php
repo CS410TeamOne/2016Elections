@@ -85,7 +85,7 @@
                         
                     </li>
                     <?php if(live_coverage_enabled()){ ?>
-                        <li><a href="<?php echo site_url() . "/live/"; ?>"><span class="glyphicon glyphicon-certificate" style="color:red"></span> <b>Live Coverage</b></a></li>
+                        <li><a href="<?php echo site_url() . "/live/"; ?>"><span class="glyphicon glyphicon-certificate" style="color:red"></span><b> Live Coverage</b></a></li>
                     <?php } ?>
                 <?php if($justify == '') { ?>
                                 </ul>
