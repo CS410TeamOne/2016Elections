@@ -8,28 +8,29 @@
                 <div class='container'>
                     <?php the_content() ?>
                 </div>
-                <?php if(get_post_meta(get_the_ID(),'map',true)):?>
-                <div class='well'>
-                    <div style='margin:auto'>
-                        <h3> Map </h3>
-                    <?php
-                    $src = 'http://maps.googleapis.com/maps/api/staticmap?autoscale=false&size=600x300&maptype=roadmap&key=AIzaSyBOKujjwVRasT8-zrFS2Cp4yeZolvspHnk&format=png&visual_refresh=true';
-                    $marker = "&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C" . get_post_meta(get_the_ID(), 'map', true);?>
-                    <img src="<?php echo $src . $marker ?>"/>
+                <?php if (get_post_meta(get_the_ID(), 'map', true)): ?>
+                    <div class='well'>
+                        <div style='margin:auto'>
+                            <h3> Map </h3>
+                            <?php
+                            $src = 'http://maps.googleapis.com/maps/api/staticmap?autoscale=false&size=600x300&maptype=roadmap&key=AIzaSyBOKujjwVRasT8-zrFS2Cp4yeZolvspHnk&format=png&visual_refresh=true';
+                            $marker = "&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C" . get_post_meta(get_the_ID(), 'map', true);
+                            ?>
+                            <img src="<?php echo $src . $marker ?>"/>
+                        </div>
                     </div>
-                </div>
-                <hr/>
+                    <hr/>
                 </div>
                 <div class="well">
                 <?php endif; ?>
                 <?php comments_template() ?>
-                
+
                 <?php
             endwhile;
         else: endif;
         ?>
-        </div>
     </div>
+</div>
 </div>
 <?php get_footer() ?>    
 
