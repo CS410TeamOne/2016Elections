@@ -56,8 +56,14 @@ function echo_first_image($postID) {
 function display_comments($comment, $args, $depth) {
 
     $GLOBALS['comment'] = $comment;
-    ?>
-    <blockquote>
+    if(wp_is_mobile()){
+		echo "<div class=\"well well-sm\">";
+	}else{
+		echo "<blockquote>";
+	}
+	?>
+	
+
     <?php printf(__('%s'), get_comment_author_link()) ?>
         | <a class="comment-permalink" href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)) ?>"><?php printf(__('%1$s'), get_comment_date(), get_comment_time()) ?></a> | 
         <?php comment_reply_link(array_merge($args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
@@ -71,9 +77,14 @@ function display_comments($comment, $args, $depth) {
         <p>
     <?php comment_text(); ?>
         </p>
-    </blockquote>
+    
 
     <?php
+	if(wp_is_mobile()){
+		echo "</div>";
+	}else{
+		echo "</blockquote>";
+	}
 }
 
 //Custom sidebars

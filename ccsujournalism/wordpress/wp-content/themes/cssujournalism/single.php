@@ -1,6 +1,10 @@
 <?php get_header() ?>
-<div class='container'>
-    <div class='jumbotron'>
+<?php if(wp_is_mobile){?>
+<div class='content-mobile'>
+<?php }else{ ?>
+<div class='content'>
+<?php } ?>
+    <div class='well'>
         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                 <h2> <?php the_title() ?></h2>
                 <small><span class="glyphicon glyphicon-list"></span> <?php the_category(', ') ?> | <span class="glyphicon glyphicon-user"></span> <?php the_author() ?> | <span class="glyphicon glyphicon-time"></span> <?php the_time('F jS, Y') ?></small>
@@ -20,15 +24,13 @@
                         </div>
                     </div>
                     <hr/>
-                </div>
-                <div class="well">
+                
                 <?php endif; ?>
                 <?php comments_template() ?>
-
                 <?php
-            endwhile;
-        else: endif;
-        ?>
+				endwhile;
+				else: endif;
+				?>
     </div>
 </div>
 </div>

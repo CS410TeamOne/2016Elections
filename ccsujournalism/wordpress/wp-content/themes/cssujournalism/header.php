@@ -21,8 +21,16 @@
             // Fix menu overlap bug
             if (is_admin_bar_showing())
                 echo '<div style="min-height: 28px;"></div>';
+				if(wp_is_mobile())
+					echo '<div style="min-height: 10px;"></div>';
             ?>
             <div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
                 <a class="navbar-brand" href="<?php echo site_url(); ?>"><?php bloginfo('name'); ?></a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
