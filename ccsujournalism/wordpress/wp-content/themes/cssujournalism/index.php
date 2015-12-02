@@ -92,59 +92,41 @@ if (is_admin_bar_showing()) {
             <hr/>
 <?php } ?>
         <!-- Always display new stories and top discussions
-        code to display a col-md-6 should probably be written as a function, but this will do for now.
-        -->
-        <div class="row">
-            <div class="col-md-6">
-                <h1><span class="glyphicon glyphicon-time"></span> New Posts</h1>
-                <table class="table table-striped">
-<?php query_posts('category_name=&post_status=publish,future=&posts_per_page=5'); ?>
-                    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                            <tr><td><a href="<?php the_permalink(); ?>"><?php
-                            if (has_post_thumbnail()) {
-                                the_post_thumbnail(array(100, 100));
-                            } else {
-                                echo '<img src="' . get_template_directory_uri() . '/img/no_img.jpg"/>';
-                            }
-                            ?></a></td>
-                                <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?>
-                                    <?php
-                                    if (in_category("videos")) {
-                                        echo get_video_glyph();
-                                    }
-                                    ?>
-                                    <span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> 
-                                </td></tr>
-                            <?php
-                        endwhile;
-                    else: endif;
-                    ?>
-                </table>
-            </div>
-            <div class="col-md-6">
-                <h1><span class="glyphicon glyphicon-fire"></span> Top Discussions</h1>
-                <table class="table table-striped">
-                    <?php $popular = new WP_Query('orderby=comment_count&posts_per_page=5'); ?> 
-                                <?php while ($popular->have_posts()) : $popular->the_post(); ?> 
-                        <tr><td><a href="<?php the_permalink(); ?>"><?php
-                                    if (has_post_thumbnail()) {
-                                        the_post_thumbnail(array(100, 100));
-                                    } else {
-                                        echo '<img src="' . get_template_directory_uri() . '/img/no_img.jpg"/>';
-                                    }
-                                    ?></a></td>
-                            <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?>
-                                <?php
-                                if (in_category("videos")) {
-                                    echo get_video_glyph();
-                                }
-                                ?>
-                                <span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> 
-                            </td></tr>
-            <?php endwhile; ?>
-                </table>
-            </div>
+        code to display a col-md-6 should probably be written as a function, but this will do for now. -->
+        <ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#campus">Campus</a></li>
+  <li><a data-toggle="tab" href="#community">Community</a></li>
+  <li><a data-toggle="tab" href="#state">State</a></li>
+  <li><a data-toggle="tab" href="#nation">Nation</a></li>
+</ul>
 
+<div class="tab-content">
+  <div id="campus" class="tab-pane fade in active">
+    <div class="row">
+        <?php show_posts_by_tag("campus", "New Posts", "time", "date"); ?>
+        <?php show_posts_by_tag("campus", "Top Discussions", "comment", "comment_count"); ?>
+    </div>
+  </div>
+  <div id="community" class="tab-pane fade">
+  <div class="row">
+    <?php show_posts_by_tag("community", "New Posts", "time", "date"); ?>
+    <?php show_posts_by_tag("community", "Top Discussions", "comment", "comment_count"); ?>
+    </div>
+  </div>
+  <div id="state" class="tab-pane fade">
+  <div class="row">
+    <?php show_posts_by_tag("state", "New Posts", "time", "date"); ?>
+    <?php show_posts_by_tag("state", "Top Discussions", "comment", "comment_count"); ?>
+    </div>
+  </div>
+  <div id="nation" class="tab-pane fade">
+  <div class="row">
+    <?php show_posts_by_tag("nation", "New Posts", "time", "date"); ?>
+    <?php show_posts_by_tag("nation", "Top Discussions", "comment", "comment_count"); ?>
+    </div>
+  </div>
+  <hr/>
+</div>
             <?php
             if (!wp_is_mobile())
                 echo "<div class='row'>";

@@ -49,7 +49,7 @@
 						<?php if(wp_is_mobile()){ ?>
 							<span class="glyphicon glyphicon-list"></span> Catagories<span class="caret"></span></a>
 						<?php }else{ ?>
-							<span class="glyphicon glyphicon-list"></span> <span class="caret"></span></a>
+							<span class="glyphicon glyphicon-list"></span> Catagories<span class="caret"></span></a>
 						<?php } ?>
                         <ul class="dropdown-menu">
                             <?php
