@@ -23,7 +23,7 @@
             if (is_admin_bar_showing())
                 echo '<div style="min-height: 28px;"></div>';
 				if(wp_is_mobile()){
-                    $justify = "pull-left";
+                    $justify = "pull-right";
 					echo '<div style="min-height: 10px;"></div>';
                     
                 }
@@ -38,11 +38,19 @@
                 <a class="navbar-brand" href="<?php echo site_url(); ?>"><?php bloginfo('name'); ?></a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
-            
                 <ul class="nav navbar-nav <?php echo $justify ?>">
+				<?php if(wp_is_mobile()){ ?>
+					<li class="active"><a href="<?php echo site_url(); ?>"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+				<?php }else{ ?>
                     <li class="active"><a href="<?php echo site_url(); ?>"><span class="glyphicon glyphicon-home"></span></a></li>
+				<?php } ?>	
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list"></span> <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						<?php if(wp_is_mobile()){ ?>
+							<span class="glyphicon glyphicon-list"></span> Catagories<span class="caret"></span></a>
+						<?php }else{ ?>
+							<span class="glyphicon glyphicon-list"></span> <span class="caret"></span></a>
+						<?php } ?>
                         <ul class="dropdown-menu">
                             <?php
                             $args = array(
@@ -75,8 +83,6 @@
                             ?>
                         </ul>
                     </li>
-
-
                 <?php if($justify == '') { ?>
                                 </ul>
                 <ul class="nav navbar-nav pull-right">
