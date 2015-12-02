@@ -133,7 +133,14 @@ function get_sorted_cat_arr() {
     $option_array = get_option('plugin_options');
     return explode(",", $option_array["category_order"]); //definitely my favorite PHP function
 }
-
+function live_coverage_enabled(){
+    $live = get_option('plugin_options');
+    if($live["is_live"] == 1){
+        return true;
+    }else{
+        return false;
+    }
+}
 function get_cat_object($category_str) {
     return get_term_by('name', $category_str, 'category');
 }

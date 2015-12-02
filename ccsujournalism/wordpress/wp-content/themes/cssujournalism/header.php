@@ -47,9 +47,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 						<?php if(wp_is_mobile()){ ?>
-							<span class="glyphicon glyphicon-list"></span> Catagories<span class="caret"></span></a>
+							<span class="glyphicon glyphicon-list"></span> Categories<span class="caret"></span></a>
 						<?php }else{ ?>
-							<span class="glyphicon glyphicon-list"></span> Catagories<span class="caret"></span></a>
+							<span class="glyphicon glyphicon-list"></span> Categories<span class="caret"></span></a>
 						<?php } ?>
                         <ul class="dropdown-menu">
                             <?php
@@ -82,7 +82,11 @@
                             wp_list_categories($args);
                             ?>
                         </ul>
+                        
                     </li>
+                    <?php if(live_coverage_enabled()){ ?>
+                        <li><a href="<?php echo site_url() . "/live/"; ?>"><span class="glyphicon glyphicon-certificate" style="color:red"></span> <b>Live Coverage</b></a></li>
+                    <?php } ?>
                 <?php if($justify == '') { ?>
                                 </ul>
                 <ul class="nav navbar-nav pull-right">

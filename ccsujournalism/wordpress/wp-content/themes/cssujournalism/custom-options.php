@@ -57,6 +57,7 @@ function register_and_build_fields() {
     register_setting('plugin_options', 'plugin_options', 'validate_setting');
     add_settings_section('main_section', 'Main Settings', 'section_cb', basename(__FILE__));
     add_settings_field('category_order', 'Category Display Order', 'category_order_setting', basename(__FILE__), 'main_section');
+    add_settings_field('is_live','Enable Live Coverage', 'is_live_setting',basename(__FILE__),'main_section');
 }
 
 function validate_setting($plugin_options) {
@@ -71,5 +72,9 @@ function section_cb() {
 function category_order_setting() {
     $options = get_option('plugin_options');
     echo "<input name='plugin_options[category_order]' type='text' value='{$options['category_order']}'  id='order'/>";
+}
+function is_live_setting() {
+    $options = get_option('plugin_options');
+    echo "<input name='plugin_options[is_live]' type='checkbox' value='1'" . checked( 1, $options['is_live'], false ) . "id='live'/>";
 }
 ?>
