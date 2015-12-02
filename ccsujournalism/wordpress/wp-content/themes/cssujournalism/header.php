@@ -19,10 +19,14 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <?php
             // Fix menu overlap bug
+            static $justify = "";
             if (is_admin_bar_showing())
                 echo '<div style="min-height: 28px;"></div>';
-				if(wp_is_mobile())
+				if(wp_is_mobile()){
+                    $justify = "pull-left";
 					echo '<div style="min-height: 10px;"></div>';
+                    
+                }
             ?>
             <div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -34,7 +38,8 @@
                 <a class="navbar-brand" href="<?php echo site_url(); ?>"><?php bloginfo('name'); ?></a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
+            
+                <ul class="nav navbar-nav <?php echo $justify ?>">
                     <li class="active"><a href="<?php echo site_url(); ?>"><span class="glyphicon glyphicon-home"></span></a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list"></span> <span class="caret"></span></a>
@@ -71,9 +76,11 @@
                         </ul>
                     </li>
 
-                </ul>
+
+                <?php if($justify == '') { ?>
+                                </ul>
                 <ul class="nav navbar-nav pull-right">
-                    <?php
+                <?php }
                     if (is_user_logged_in()) {
                         global $current_user;
                         get_currentuserinfo();
