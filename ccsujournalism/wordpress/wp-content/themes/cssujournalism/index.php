@@ -94,10 +94,17 @@ if (is_admin_bar_showing()) {
         <!-- Always display new stories and top discussions
         code to display a col-md-6 should probably be written as a function, but this will do for now. -->
         <ul class="nav nav-tabs">
+        <?php if(wp_is_mobile()){ ?>
   <li class="active"><a data-toggle="tab" href="#campus">Campus</a></li>
   <li><a data-toggle="tab" href="#community">Community</a></li>
   <li><a data-toggle="tab" href="#state">State</a></li>
   <li><a data-toggle="tab" href="#nation">Nation</a></li>
+        <?php }else{ ?>
+        <li class="active"><a data-toggle="tab" href="#campus"><span class="glyphicon glyphicon-education"></span> Campus</a></li>
+  <li><a data-toggle="tab" href="#community"><span class="glyphicon glyphicon-user"></span> Community</a></li>
+  <li><a data-toggle="tab" href="#state"><span class="glyphicon glyphicon-tree-conifer"></span> State</a></li>
+  <li><a data-toggle="tab" href="#nation"><span class="glyphicon glyphicon-star"></span> Nation</a></li>
+        <?php } ?>
 </ul>
 
 <div class="tab-content">
