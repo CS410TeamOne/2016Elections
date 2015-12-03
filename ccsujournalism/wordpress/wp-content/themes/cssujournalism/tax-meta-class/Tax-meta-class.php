@@ -1,4 +1,5 @@
 <?php 
+
 /**
  * Tax Meta Class
  *
@@ -160,6 +161,8 @@ class Tax_Meta_Class {
       wp_enqueue_style( 'tax-meta-clss', $plugin_path . '/css/Tax-meta-class.css' );
       // Enqueue Meta Box Scripts
       wp_enqueue_script( 'tax-meta-clss', $plugin_path . '/js/tax-meta-clss.js', array( 'jquery' ), null, true );
+	  wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css');
+    wp_enqueue_style( 'main', get_template_directory_uri() . '/style.css');
     
     }
     
@@ -524,18 +527,21 @@ class Tax_Meta_Class {
   public function show_field_text( $field, $meta) {  
     $this->show_field_begin( $field, $meta );
     if($field["id"] == 'glyphicon'){
-          echo "Select a glyphicon to associate with this category. A list of glyphicons can be found <a href=\"http://getbootstrap.com/components/\" target=\"_blank\"> here. </a>";
-     echo "Enter the string starting after the glyphicon glyphicon-. For example, for the 'plus' glyphicon, simply enter plus.<br/>";
+     echo "<small>Select a glyphicon to associate with this category. A list of glyphicons can be found <a href=\"http://getbootstrap.com/components/\" target=\"_blank\"> here. </a>";
+     echo "Enter the name starting after the 'glyphicon glyphicon-'. For example, for the 'plus' glyphicon, simply enter 'plus.'</small><br/>";
     
     }
     
-    echo "<input type='text' class='at-text' name='{$field['id']}' id='{$field['id']}' value='{$meta}' style='{$field['style']}' size='30'/>";
-     echo "<script type='text/javascript'>";
-     echo "document.write(\"";
-     echo "<span class='glyphicon glyphicon-\"";
-     echo "+ document.getElementById('glyphicon').value + ";
-     echo "\"'></span>\");";
-     echo "</script>";
+    echo "<input type='text' class='at-text' name='{$field['id']}' id='{$field['id']}' value='{$meta}' style='{$field['style']}' size='30'/> <span style='font-size:2em;display:inline;'id='g'></span>";
+	?>
+	<script type='text/javascript'>
+		jQuery( "#glyphicon" ).keyup(function() {
+			jQuery("#g").removeClass();
+			jQuery("#g").addClass("glyphicon glyphicon-" + jQuery("#glyphicon").val());
+	});
+	</script>
+	<?php
+
     $this->show_field_end( $field, $meta );
   }
 

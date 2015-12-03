@@ -61,11 +61,11 @@ if (is_admin_bar_showing()) {
                                     <div class="carousel-caption-wrapper">
                                         <div class="carousel-caption">                                   
                                             <div style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">                                  
-                                                <h1><?php the_title() ?> <?php
-                if (in_category("videos")) {
-                    echo get_video_glyph();
-                }
-                ?></h1>
+                                                <h1><?php the_title();
+													if (in_category("videos")) {
+														echo get_video_glyph();
+													}
+													?></h1>
                                                 <p><?php the_excerpt() ?> |
                                                     <a href='<?php the_permalink(); ?>'>Read More</a></p>           
                                             </div>
@@ -134,54 +134,24 @@ if (is_admin_bar_showing()) {
   </div>
   <hr/>
 </div>
-            <?php
-            if (!wp_is_mobile())
+<?php
+	if (!wp_is_mobile()){
+		echo "<div class='row'>";
+	}
+    $sorted_name_array = get_sorted_cat_arr();
+    static $counter = 0;
+    foreach ($sorted_name_array as $cat) {
+        $category = get_cat_object($cat);
+        if ($category->name != 'Uncategorized') {
+            if ($counter % 2 == 0 && !wp_is_mobile()) {
+                echo "</div>";
                 echo "<div class='row'>";
-            $sorted_name_array = get_sorted_cat_arr();
-            static $counter = 0;
-            foreach ($sorted_name_array as $cat) {
-                $category = get_cat_object($cat);
-                if ($category->name != 'Uncategorized') {
-                    if ($counter % 2 == 0 && !wp_is_mobile()) {
-                        echo "</div>";
-                        echo "<div class='row'>";
-                    }
-                    ?>
-                    <div class="col-md-6">
-                        <a href="./category/<?php echo $category->slug ?>"><h1><span class="glyphicon glyphicon-<?php
-                            echo get_category_glyph($category);
-                            ?>"></span> <?php echo $category->name ?> </h1></a>
-                        <table class="table table-striped table-condensed">
-                                        <?php query_posts('category_name=' . $category->name . '&post_status=publish,future=&posts_per_page=5'); ?>
-                                        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                                    <tr><td>
-                                            <a href="<?php the_permalink(); ?>"><?php
-                                                if (has_post_thumbnail()) {
-                                                    the_post_thumbnail(array(100, 100));
-                                                } else {
-                                                    echo '<img src="' . get_template_directory_uri() . '/img/no_img.jpg"/>';
-                                                }
-                                                ?></a></td>
-                                        <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?>
-                                    <?php
-                                    if (in_category("videos")) {
-                                        echo get_video_glyph();
-                                    }
-                                    ?>
-                                            <span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> 
-                                        </td></tr>
-                            <?php
-                        endwhile;
-                    else: endif;
-                    ?>
-                        </table>
-                    </div>
-            <?php
-            $counter++;
-        }
-    }
-    ?>
-<?php if ($counter % 2 != 0 && !wp_is_mobile()) echo "</div>"; ?>
+            }
+			show_posts($category);
+			$counter++;
+		}
+	}
+	if ($counter % 2 != 0 && !wp_is_mobile()) echo "</div>"; ?>
         </div>
     </div>  
     <!--This should be changed... just a quick fix to get the footer to display properly.-->

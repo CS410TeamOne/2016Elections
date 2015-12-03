@@ -169,7 +169,7 @@ function show_posts_by_tag($tag, $type_string, $glyph, $orderby){ ?>
     <div class="col-md-6">
                 <h1><span class="glyphicon glyphicon-<?php echo $glyph ?>"></span> <?php echo $type_string ?> </h1>
                 <table class="table table-striped">
-                <?php query_posts('orderby='.$orderby.'posts_per_page=5&tag='.$tag); ?>
+                <?php query_posts('orderby='.$orderby.'&posts_per_page=5&tag='.$tag); ?>
                     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                             <tr><td><a href="<?php the_permalink(); ?>"><?php
                             if (has_post_thumbnail()) {
@@ -192,5 +192,36 @@ function show_posts_by_tag($tag, $type_string, $glyph, $orderby){ ?>
                     ?>
                 </table>
             </div>
-<?php } ?>
+<?php } 
 
+function show_posts($category){ ?>
+	<div class="col-md-6">
+                        <a href="./category/<?php echo $category->slug ?>"><h1><span class="glyphicon glyphicon-<?php
+                            echo get_category_glyph($category);
+                            ?>"></span> <?php echo $category->name ?> </h1></a>
+                        <table class="table table-striped table-condensed">
+                                        <?php query_posts('category_name=' . $category->name . '&post_status=publish,future=&posts_per_page=5'); ?>
+                                        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                                    <tr><td>
+                                            <a href="<?php the_permalink(); ?>"><?php
+                                                if (has_post_thumbnail()) {
+                                                    the_post_thumbnail(array(100, 100));
+                                                } else {
+                                                    echo '<img src="' . get_template_directory_uri() . '/img/no_img.jpg"/>';
+                                                }
+                                                ?></a></td>
+                                        <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?>
+                                    <?php
+                                    if (in_category("videos")) {
+                                        echo get_video_glyph();
+                                    }
+                                    ?>
+                                            <span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> 
+                                        </td></tr>
+                            <?php
+                        endwhile;
+                    else: endif;
+                    ?>
+                        </table>
+                    </div>
+<?php } 
