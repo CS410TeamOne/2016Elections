@@ -63,7 +63,7 @@ if (is_admin_bar_showing()) {
                                             <div style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">                                  
                                                 <h1><?php the_title();
 													if (in_category("videos")) {
-														echo get_video_glyph();
+														echo " " . get_video_glyph();
 													}
 													?></h1>
                                                 <p><?php the_excerpt() ?> |

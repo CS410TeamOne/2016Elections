@@ -146,7 +146,7 @@ function get_cat_object($category_str) {
 }
 
 function get_video_glyph() {
-    return "<div style=\"color:red;display:inline;\"><span class=\"glyphicon glyphicon-facetime-video\"></span></div>";
+    return "<div style=\"color:red;display:inline;font-size:1em;\"><span class=\"glyphicon glyphicon-facetime-video\"></span></div>";
 }
 
 function get_category_glyph($category) {
