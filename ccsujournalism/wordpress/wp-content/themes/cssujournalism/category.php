@@ -4,6 +4,13 @@
  */
 get_header();
 ?>
+<?php
+// Fix menu overlap bug
+$str = '';
+if (is_admin_bar_showing()) {
+    $str = "style='top:95px;'";
+}
+?>
 <?php if (wp_is_mobile()) {
     ?>
     <div class="content-mobile">

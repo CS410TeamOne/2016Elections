@@ -158,7 +158,7 @@ function get_glyph($type){
 		$color = "grey";
 		$glyph_string = "picture";
 	}
-	return "<div style=\"color:" . $color . ";display:inline;\"><span class=\"glyphicon glyphicon-" . $glyph_string . "\"></span></div>";
+	return "<div style=\"color:" . $color . ";display:inline;\"><span class=\"glyphicon glyphicon-" . $glyph_string . "\"></span></div> ";
 }
 
 

@@ -1,4 +1,11 @@
 <?php get_header() ?>
+<?php
+// Fix menu overlap bug
+$str = '';
+if (is_admin_bar_showing()) {
+    $str = "style='top:95px;'";
+}
+?>
 <?php 
 if(wp_is_mobile()){
         echo "<div class='content-mobile'>";
@@ -8,6 +15,13 @@ if(wp_is_mobile()){
     ?>
     <div class='well'>
         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+        <?php
+                                                if (has_post_thumbnail()) {
+                                                    the_post_thumbnail(array(100, 100));
+                                                } else {
+                                                    echo '<img src="' . get_template_directory_uri() . '/img/no_img.jpg"/>';
+                                                }
+                                                ?>
                 <h2> <?php the_title() ?></h2>
                 <small><span class="glyphicon glyphicon-list"></span> <?php the_category(', ') ?> | <span class="glyphicon glyphicon-user"></span> <?php the_author() ?> | <span class="glyphicon glyphicon-time"></span> <?php the_time('F jS, Y') ?></small>
                 <hr/>
