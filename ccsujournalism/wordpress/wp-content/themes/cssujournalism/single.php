@@ -11,9 +11,7 @@ if(wp_is_mobile()){
                 <h2> <?php the_title() ?></h2>
                 <small><span class="glyphicon glyphicon-list"></span> <?php the_category(', ') ?> | <span class="glyphicon glyphicon-user"></span> <?php the_author() ?> | <span class="glyphicon glyphicon-time"></span> <?php the_time('F jS, Y') ?></small>
                 <hr/>
-                <div class='container'>
                     <?php the_content() ?>
-                </div>
                 <?php if (get_post_meta(get_the_ID(), 'map', true)): ?>
                     <div class='well'>
                         <div style='margin:auto'>
@@ -39,7 +37,5 @@ if(wp_is_mobile()){
 				else: endif;
 				?>
     </div>
-</div>
-</div>
 <?php get_footer() ?>    
 

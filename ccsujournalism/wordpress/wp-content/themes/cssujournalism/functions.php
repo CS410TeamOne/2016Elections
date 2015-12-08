@@ -181,7 +181,7 @@ function get_category_glyph($category) {
 function show_posts_by_tag($tag, $type_string, $glyph, $orderby){ ?>
     <div class="col-md-6">
                 <h1><span class="glyphicon glyphicon-<?php echo $glyph ?>"></span> <?php echo $type_string ?> </h1>
-                <table class="table table-striped">
+                <table class="table table-striped table-condensed">
                 <?php query_posts('orderby='.$orderby.'&posts_per_page=5&tag='.$tag); ?>
                     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                             <tr><td><a href="<?php the_permalink(); ?>"><?php
