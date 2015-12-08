@@ -145,22 +145,9 @@ function get_cat_object($category_str) {
     return get_term_by('name', $category_str, 'category');
 }
 
-function get_glyph($type){
-	if($type == "video"){
-		$color = "red";
-		$glyph_string = "facetime-video";
-	}
-	if($type == "audio"){
-		$color = "black";
-		$glyph_string = "volume-up";
-	}	
-	if($type == "gallery"){
-		$color = "grey";
-		$glyph_string = "picture";
-	}
-	return "<div style=\"color:" . $color . ";display:inline;\"><span class=\"glyphicon glyphicon-" . $glyph_string . "\"></span></div>";
+function get_video_glyph() {
+    return "<div style=\"color:red;display:inline;font-size:1em;\"><span class=\"glyphicon glyphicon-facetime-video\"></span></div>";
 }
-
 
 function get_category_glyph($category) {
     $default_glyph = "th-list";
@@ -193,15 +180,9 @@ function show_posts_by_tag($tag, $type_string, $glyph, $orderby){ ?>
                             ?></a></td>
                                 <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?>
                                     <?php
-                                    if (in_category("videos") || has_tag("video")){
-														echo get_glyph("video");
-													}
-													if(in_category("audio") || has_tag("audio")){
-														echo get_glyph("audio");
-													}
-													if(in_category("images") || has_tag("images") || has_tag ("image") || has_tag("gallery")){
-														echo get_glyph("gallery");
-													}
+                                    if (in_category("videos")) {
+                                        echo get_video_glyph();
+                                    }
                                     ?>
                                     <span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> 
                                 </td></tr>
@@ -231,15 +212,9 @@ function show_posts($category){ ?>
                                                 ?></a></td>
                                         <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?>
                                     <?php
-                                    if (in_category("videos") || has_tag("video")){
-														echo get_glyph("video");
-													}
-													if(in_category("audio") || has_tag("audio")){
-														echo get_glyph("audio");
-													}
-													if(in_category("images") || has_tag("images") || has_tag ("image") || has_tag("gallery")){
-														echo get_glyph("gallery");
-													}
+                                    if (in_category("videos")) {
+                                        echo get_video_glyph();
+                                    }
                                     ?>
                                             <span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> 
                                         </td></tr>
