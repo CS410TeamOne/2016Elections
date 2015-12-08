@@ -62,8 +62,14 @@ if (is_admin_bar_showing()) {
                                         <div class="carousel-caption">                                   
                                             <div style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">                                  
                                                 <h1><?php the_title();
-													if (in_category("videos")) {
-														echo get_video_glyph();
+													if (in_category("videos") || has_tag("video")){
+														echo get_glyph("video");
+													}
+													if(in_category("audio") || has_tag("audio")){
+														echo get_glyph("audio");
+													}
+													if(in_category("images") || has_tag("images") || has_tag ("image") || has_tag("gallery")){
+														echo get_glyph("gallery");
 													}
 													?></h1>
                                                 <p><?php the_excerpt() ?> |
