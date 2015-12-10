@@ -56,7 +56,13 @@ if (is_admin_bar_showing()) {
                                 $x = $x + 1;
                             }
                             ?> ">
-                                <img src="<?php echo_first_image(get_the_id()); ?>" alt="ERROR: Failed to get Carousel Image!">
+                            
+                                <img src="<?php 
+                                $thumb_id = get_post_thumbnail_id();
+                                $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
+                                $thumb_url = $thumb_url_array[0];
+                                echo $thumb_url;
+                                ?>" alt="ERROR: Failed to get Carousel Image!">
                                 <div class="container">
                                     <div class="carousel-caption-wrapper">
                                         <div class="carousel-caption">                                   

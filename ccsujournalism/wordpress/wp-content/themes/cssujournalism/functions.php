@@ -250,3 +250,9 @@ function show_posts($category){ ?>
                         </table>
                     </div>
 <?php } 
+function get_carousel_image($post){
+     if (has_post_thumbnail( $post->ID ) ){
+         $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); 
+         echo $image[0];
+}
+}
