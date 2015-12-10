@@ -42,7 +42,6 @@ function build_options_page() {
         <form method="post" action="options.php">
             <?php settings_fields('plugin_options'); ?>
             <?php do_settings_sections(basename(__FILE__)); ?>
-            <p> This textbox is used to post the order to the wordpress backend. Do not modify it's contents for now. For final version, this will be hidden. </p>
             <p class="submit">
                 <input name="Submit" type="submit" class="button-primary" value="<?php esc_attr_e('Save Changes'); ?>" />
             </p>
@@ -56,8 +55,9 @@ add_action('admin_init', 'register_and_build_fields');
 function register_and_build_fields() {
     register_setting('plugin_options', 'plugin_options', 'validate_setting');
     add_settings_section('main_section', 'Main Settings', 'section_cb', basename(__FILE__));
-    add_settings_field('category_order', 'Category Display Order', 'category_order_setting', basename(__FILE__), 'main_section');
+    
     add_settings_field('is_live','Enable Live Coverage', 'is_live_setting',basename(__FILE__),'main_section');
+	add_settings_field('category_order', '', 'category_order_setting', basename(__FILE__), 'main_section');
 }
 
 function validate_setting($plugin_options) {
@@ -71,7 +71,7 @@ function section_cb() {
 // Banner Heading
 function category_order_setting() {
     $options = get_option('plugin_options');
-    echo "<input name='plugin_options[category_order]' type='text' value='{$options['category_order']}'  id='order'/>";
+    echo "<input name='plugin_options[category_order]' type='text' value='{$options['category_order']}'  id='order' style='visibility:hidden;'/>";
 }
 function is_live_setting() {
     $options = get_option('plugin_options');
