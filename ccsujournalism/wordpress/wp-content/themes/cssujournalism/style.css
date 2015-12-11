@@ -62,3 +62,7 @@ body {
 table td:last-child{
     width:100%;
 }
+.glyphs{
+    position:relative;
+    bottom:0;
+}

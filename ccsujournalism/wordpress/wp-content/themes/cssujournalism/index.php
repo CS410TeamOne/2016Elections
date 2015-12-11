@@ -66,7 +66,7 @@ if (is_admin_bar_showing()) {
                                 <div class="container">
                                     <div class="carousel-caption-wrapper">
                                         <div class="carousel-caption">                                   
-                                            <div style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">                                  
+                                            <div style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000; padding-left:2%;">                                  
                                                 <h1><?php the_title(); ?> <?php
 													if (in_category("videos") || has_tag("video")){
 														echo get_glyph("video");

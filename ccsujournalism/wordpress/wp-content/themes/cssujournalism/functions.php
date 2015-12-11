@@ -191,7 +191,8 @@ function show_posts_by_tag($tag, $type_string, $glyph, $orderby){ ?>
                                 echo '<img src="' . get_template_directory_uri() . '/img/no_img.jpg"/>';
                             }
                             ?></a></td>
-                                <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?>
+                                <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?><br/>
+                                <div class="glyphs">
                                     <?php
                                     if (in_category("videos") || has_tag("video")){
 														echo get_glyph("video");
@@ -204,7 +205,7 @@ function show_posts_by_tag($tag, $type_string, $glyph, $orderby){ ?>
 													}
                                     ?>
                                     <span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> 
-                                </td></tr>
+                                </div></td></tr>
                             <?php
                         endwhile;
                     else: endif;
@@ -230,6 +231,7 @@ function show_posts($category){ ?>
                                                 }
                                                 ?></a></td>
                                         <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?>
+                                        <div class="glyphs">
                                     <?php
                                     if (in_category("videos") || has_tag("video")){
 														echo get_glyph("video");
@@ -242,7 +244,7 @@ function show_posts($category){ ?>
 													}
                                     ?>
                                             <span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> 
-                                        </td></tr>
+                                        </div></td></tr>
                             <?php
                         endwhile;
                     else: endif;
@@ -256,3 +258,30 @@ function get_carousel_image($post){
          echo $image[0];
 }
 }
+function display_post_collection(){ ?>
+<table class="table table-striped table-condensed">
+                    <tr><td>
+                                            <a href="<?php the_permalink(); ?>"><?php
+                                                if (has_post_thumbnail()) {
+                                                    the_post_thumbnail(array(100, 100));
+                                                } else {
+                                                    echo '<img src="' . get_template_directory_uri() . '/img/no_img.jpg"/>';
+                                                }
+                                                ?></a></td>
+                                        <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?>
+                                        <div class="glyphs">
+                                    <?php
+                                    if (in_category("videos") || has_tag("video")){
+														echo get_glyph("video");
+													}
+													if(in_category("audio") || has_tag("audio")){
+														echo get_glyph("audio");
+													}
+													if(in_category("images") || has_tag("images") || has_tag ("image") || has_tag("gallery")){
+														echo get_glyph("gallery");
+													}
+                                    ?>
+                                            <span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> 
+                                        </div></td></tr>
+                                        </table>
+<?php } 
