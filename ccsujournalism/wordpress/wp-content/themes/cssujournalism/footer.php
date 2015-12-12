@@ -1,4 +1,4 @@
-<hr>
+<hr/>
 
 <footer>
     <p><?php bloginfo('name'); ?></p>
@@ -6,4 +6,5 @@
 
 </div> <!-- /container -->
 
-<?php wp_footer(); ?>
+<?php
+wp_footer();
