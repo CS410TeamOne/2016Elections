@@ -19,7 +19,7 @@ if (post_password_required()) {
         <?php
         wp_list_comments('callback=display_comments'); //gets the comments
         ?>
-    </div>
+</div>
     </ul>
 
 <?php endif; ?>

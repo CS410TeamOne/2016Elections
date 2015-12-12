@@ -1,11 +1,8 @@
 <?php get_page_header(); ?>
 <div class="well">
-
     <?php if (have_posts()) : ?>
-
         <h1 class="page-title"><?php printf(__('Search Results for: %s', 'ccsujournalism'), get_search_query()); ?></h1>
         <hr/>
-
         <?php
         while (have_posts()) : the_post();
             display_post_collection();

@@ -1,11 +1,8 @@
 <?php get_page_header(); ?>
 <div class="well">
-
     <?php if (have_posts()) : ?>
-
         <h1 class="page-title">Tag: <?php single_tag_title() ?></h1>
         <hr/>
-
         <?php
         while (have_posts()) : the_post();
             display_post_collection();
