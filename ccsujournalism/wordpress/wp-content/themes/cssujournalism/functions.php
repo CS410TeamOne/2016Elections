@@ -245,3 +245,22 @@ function display_post_collection() {
     </table>
     <?php
 }
+
+function get_page_header() {
+    get_header();
+    // Fix menu overlap bug
+    $str = '';
+    if (is_admin_bar_showing()) {
+        $str = "style='top:95px;'";
+    }
+    if (wp_is_mobile()) {
+        ?>
+        <div class="content-mobile">
+    <?php } else { ?>
+            <section class="left-bar" id="sidebar_left" <?php echo $str ?>><?php dynamic_sidebar('left'); ?></section>
+            <section class="right-bar" id="sidebar_right" <?php echo $str ?>><?php dynamic_sidebar('right'); ?></section>
+            <div class="content">
+    <?php
+    }
+}
+        
