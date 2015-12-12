@@ -236,7 +236,7 @@ function display_post_collection() {
     <table class="table table-striped table-condensed">
         <tr><td>
                 <a href="<?php the_permalink(); ?>"><?php get_thumbnail(); ?></a></td>
-        <small><?php the_time('F jS, Y') ?> by <?php the_author_posts_link() ?></small>
+        <small><?php the_time('F jS, Y') ?> by <?php the_author(); ?></small>
         <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?>
             <div class="glyphs"><?php get_media_glyphs(); ?></div>
 
