@@ -20,39 +20,40 @@
             <?php
             // Fix menu overlap bug
             static $justify = "";
-            if (is_admin_bar_showing())
+            if (is_admin_bar_showing()){
                 echo '<div style="min-height: 28px;"></div>';
-				if(wp_is_mobile()){
-                    $justify = "pull-right";
-					echo '<div style="min-height: 10px;"></div>';
-                }
+            }
+            if (wp_is_mobile()) {
+                $justify = "pull-right";
+                echo '<div style="min-height: 10px;"></div>';
+            }
             ?>		
-<div class="navbar-header">			
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
+            <div class="navbar-header">			
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a class="navbar-brand" href="<?php echo site_url(); ?>">
-				<?php
-				if(wp_is_mobile()){
-					echo ' <span class="glyphicon glyphicon-triangle-left" onClick="history.back()"></span> ';
-				}
-					bloginfo('name'); 
-				?>
-				</a>
+                    <?php
+                    if (wp_is_mobile()) {
+                        echo ' <span class="glyphicon glyphicon-triangle-left" onClick="history.back()"></span> ';
+                    }
+                    bloginfo('name');
+                    ?>
+                </a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav <?php echo $justify ?>">
-				<?php if(wp_is_mobile()){ ?>
-					<li class="active"><a href="<?php echo site_url(); ?>"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-				<?php }else{ ?>
-                    <li class="active"><a href="<?php echo site_url(); ?>"><span class="glyphicon glyphicon-home"></span></a></li>
-				<?php } ?>	
+                    <?php if (wp_is_mobile()) { ?>
+                        <li class="active"><a href="<?php echo site_url(); ?>"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    <?php } else { ?>
+                        <li class="active"><a href="<?php echo site_url(); ?>"><span class="glyphicon glyphicon-home"></span></a></li>
+                    <?php } ?>	
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-							<span class="glyphicon glyphicon-list"></span> Categories<span class="caret"></span></a>
+                            <span class="glyphicon glyphicon-list"></span> Categories<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <?php
                             $args = array(
@@ -84,20 +85,21 @@
                             wp_list_categories($args);
                             ?>
                         </ul>
-                        
+
                     </li>
-					<li><a href="<?php echo site_url() ?>/live">
-                    <?php if(live_coverage_enabled()){ ?>
-						<span class="badge" style="color:red; background-color:lightgrey;">L I V E</span><b> Live Coverage</b></a></li>
-                    <?php }else{ ?>
-						Live Coverage</a></li>
-					<?php } ?>
-					</ul>
-						
-					<?php if($justify == '') { ?>
-                                </ul>
-                <ul class="nav navbar-nav pull-right">
-                <?php }
+                    <li><a href="<?php echo site_url() ?>/live">
+                            <?php if (live_coverage_enabled()) { ?>
+                                <span class="badge" style="color:red; background-color:lightgrey;">L I V E</span><b> Live Coverage</b></a></li>
+                    <?php } else { ?>
+                        Live Coverage</a></li>
+                    <?php } ?>
+                </ul>
+
+                <?php if ($justify == '') { ?>
+                    </ul>
+                    <ul class="nav navbar-nav pull-right">
+                        <?php
+                    }
                     if (is_user_logged_in()) {
                         global $current_user;
                         get_currentuserinfo();
