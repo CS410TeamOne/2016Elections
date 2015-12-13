@@ -224,6 +224,47 @@ function show_posts($category) {
     <?php
 }
 
+function show_video_posts($category){ ?>
+	<div class="col-md-6">
+         <a href="./category/<?php echo $category->slug ?>"><h1><span class="glyphicon glyphicon-<?php
+            echo get_category_glyph($category);
+            ?>"></span> <?php echo $category->name ?> </h1></a>
+         <table class="table table-striped table-condensed">
+            <?php query_posts('category_name=' . $category->name . 		 '&post_status=publish,future=&posts_per_page=5'); ?>
+            <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+            <tr><td>
+            
+            
+            <!-- need a function here to aquire youtube/vimeo videos from the person posting the article rel = the name of the plugin i used -->
+			<a href="https://www.youtube.com/watch?v=OYbXaqQ3uuo"
+				rel="wp-video-lightbox" title=""><img
+				src="//i.ytimg.com/vi_webp/OYbXaqQ3uuo/mqdefault.webp"
+				alt="YouTube" width="60" /></a></a></td>
+												
+
+                                        <td><b><a href="<?php the_permalink(); ?>"><?php the_title(); ?> </b></a><br/><?php the_excerpt(); ?>
+                                    <?php
+                                    if (in_category("videos") || has_tag("video")){
+														echo get_glyph("video");
+													}
+													if(in_category("audio") || has_tag("audio")){
+														echo get_glyph("audio");
+													}
+													if(in_category("images") || has_tag("images") || has_tag ("image") || has_tag("gallery")){
+														echo get_glyph("gallery");
+													}
+                                    ?>
+                                            <span class="badge"><span class="glyphicon glyphicon-comment"></span> <?php echo get_comments_number() ?> 
+                                        </td></tr>
+                            <?php
+                        endwhile;
+                    else: endif;
+                    ?>
+                        </table>
+                    </div>
+<?php } 
+
+
 function get_carousel_image() {
     $thumb_id = get_post_thumbnail_id();
     $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
