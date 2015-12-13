@@ -175,9 +175,9 @@ function show_posts_by_tag($tag, $type_string, $glyph, $orderby) {
     <?php
 }
 
-function get_thumbnail() {
+function get_thumbnail($arr = array(100,100)){ //I like the way PHP does optional arguments
     if (has_post_thumbnail()) {
-        the_post_thumbnail(array(100, 100));
+        the_post_thumbnail($arr);
     } else {
         echo '<img src="' . get_template_directory_uri() . '/img/no_img.jpg"/>';
     }
@@ -262,5 +262,18 @@ function get_page_header() {
             <div class="content">
     <?php
     }
+}
+function display_video_category(){ ?>
+    <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+    <a href="<?php the_permalink(); ?>">
+      <?php get_thumbnail(array(242,200)); ?>
+      <div class="caption">
+        <h3><?php the_title(); ?></h3></a>
+        <p><?php the_excerpt(); get_media_glyphs(); ?></p>
+      </div>
+    </div>
+  </div>
+<?php
 }
         
